@@ -35,6 +35,39 @@ function findAvgOfSubarrays(arr, K) {
 findAvgOfSubarrays([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)
 ````
 
+> [!NOTE]
+> **Language:** Java
+```java
+// Language: Java
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static List<Double> findAvgOfSubarrays(int[] arr, int K) {
+        List<Double> results = new ArrayList<>();
+        
+        for (int i = 0; i <= arr.length - K; i++) {
+            double sum = 0;
+            for (int j = i; j < i + K; j++) {
+                sum += arr[j];
+            }
+            results.add(sum / K);
+        }
+        return results;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 2, 6, -1, 4, 1, 8, 2};
+        int K = 5;
+        List<Double> averages = findAvgOfSubarrays(arr, K);
+        System.out.println(averages);
+    }
+}
+
+```
+
 <b>Time complexity: </b> Since for every element of the input array, we are calculating the sum of its next `K` elements, the time complexity of the above algorithm will be `O(N*K)` where `N` is the number of elements in the input array.
 
 #### Can we find a better solution? Do you see any inefficiency in the above approach?
