@@ -1161,7 +1161,7 @@ findPermutation("aaacb", "abc")//true, The string contains "acb" which is a perm
 ```
 > [!NOTE]
 > **Language:** Java
-````java
+```java
 import java.util.HashMap;
 import java.util.Map;
 
@@ -1248,7 +1248,6 @@ As we know, when we are not allowed to repeat characters while finding permutati
 This problem follows the <b>Sliding Window pattern</b> and is very similar to <b>Permutation in a String</b>. In this problem, we need to find every occurrence of any permutation of the pattern in the string. We will use a list to store the starting indices of the anagrams of the pattern in the string.
 
 > [!NOTE]
->
 > **Language:** JavaScript
 
 ```js
