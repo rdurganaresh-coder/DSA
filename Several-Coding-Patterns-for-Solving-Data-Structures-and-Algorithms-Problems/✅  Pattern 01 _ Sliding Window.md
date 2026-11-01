@@ -191,6 +191,7 @@ function maxSubarrayOfSizeK(arr, k) {
 
 maxSubarrayOfSizeK(3, [2, 1, 5, 1, 3, 2])//9
 maxSubarrayOfSizeK(2, [2, 3, 4, 1, 5])//7
+```
 > [!NOTE]
 > **Language:** Java
 ````java
@@ -220,7 +221,7 @@ public class Main {
         System.out.println(maxSubarrayOfSizeK(2, new int[]{2, 3, 4, 1, 5}));    // Output: 7
     }
 }
-
+```
 - Time complexity will be `O(N*K)`, where `N` is the total number of elements in the given array
 
 ### Sliding Window Approach
