@@ -3,7 +3,7 @@ package com.durga.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("java:S1104")
+
 public class Node {
     public int val;
     public List<Node> neighbors;
