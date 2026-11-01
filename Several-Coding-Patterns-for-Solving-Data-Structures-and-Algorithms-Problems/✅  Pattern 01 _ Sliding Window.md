@@ -13,7 +13,9 @@ Lets understand this problem with a real input:
 A <b>brute-force</b> algorithm will calculate the sum of every 5-element contiguous subarray of the given array and divide the sum by 5 to find the average.
 
 
-<mark>**Language: JavaScript**</mark>
+> [!NOTE]
+> **Language:** JavaScript
+
 ````js
 function findAvgOfSubarrays(arr, K) {
   const results = []
