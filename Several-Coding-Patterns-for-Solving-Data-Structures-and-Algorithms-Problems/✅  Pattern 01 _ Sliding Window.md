@@ -111,7 +111,7 @@ function findAveragesOfSubarrays(arr, k) {
 }
 
 findAveragesOfSubarrays([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)//[2.2, 2.8, 2.4, 3.6, 2.8]
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -264,7 +264,7 @@ maxSubarrayOfSizeK([2, 1, 5, 1, 3, 2], 3)//9
 maxSubarrayOfSizeK([2, 3, 4, 1, 5], 2)//7 
 ```
 > [!NOTE]
-> **Language:** JavaScript
+> **Language:** Java
 ```java
 public class Main {
     public static int maxSubarrayOfSizeK(int[] arr, int k) {
@@ -360,7 +360,7 @@ smallestSubarrayWithGivenSum([3, 4, 1, 1, 6], 8)//3
 
 ```
 > [!NOTE]
-> **Language:** JavaS
+> **Language:** Java
 ```java
 public class Solution {
     public static int smallestSubarrayWithGivenSum(int[] arr, int s) {
@@ -458,7 +458,7 @@ longestSubstringWithKdistinct("araaci", 1)//2, The longest substring with no mor
 longestSubstringWithKdistinct("cbbebi", 3)//5, The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi".
 ```
 > [!NOTE]
-> **Language:** JavaScript
+> **Language:** Java
 ```java
 import java.util.HashMap;
 import java.util.Map;
@@ -742,7 +742,7 @@ function lengthOfLongestSubstringTwoDistinct(s) {
 
 lengthOfLongestSubstringTwoDistinct('eceba')//3
 lengthOfLongestSubstringTwoDistinct('ccaabbb')//5
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -835,7 +835,7 @@ function nonRepeatSubstring(str) {
 nonRepeatSubstring("aabccbb")//3
 nonRepeatSubstring("abbbb")//2
 nonRepeatSubstring("abccde")//3
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -938,7 +938,7 @@ function lengthOfLongestSubstring(str, k) {
 lengthOfLongestSubstring("aabccbb", 2)//5, Replace the two 'c' with 'b' to have a longest repeating substring "bbbbb".
 lengthOfLongestSubstring("abbcb", 1)//4, Replace the 'c' with 'b' to have a longest repeating substring "bbbb".
 lengthOfLongestSubstring("abccde", 1)//3, Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -1036,7 +1036,7 @@ function lengthOfLongestSubstring (arr, k) {
 
 lengthOfLongestSubstring ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], 2)//6, Replace the '0' at index 5 and 8 to have the longest contiguous subarray of `1`'s having length 6.
 lengthOfLongestSubstring ([0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1], 3)//9, Replace the '0' at index 6, 9, and 10 to have the longest contiguous subarray of `1`'s having length 9.
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -1158,7 +1158,7 @@ findPermutation("oidbcaf", "abc")//true, The string contains "bca" which is a pe
 findPermutation("odicf", "dc")//false
 findPermutation("bcdxabcdy", "bcdxabcdy")//true
 findPermutation("aaacb", "abc")//true, The string contains "acb" which is a permutation of the given pattern.
-````
+```
 > [!NOTE]
 > **Language:** Java
 ````java
@@ -1303,7 +1303,7 @@ function findStringAnagrams(str, pattern){
 
 findStringAnagrams('ppqp', 'pq')//[1,2], The two anagrams of the pattern in the given string are "pq" and "qp".
 findStringAnagrams('abbcabc', 'abc')//[2,3,4], The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -1445,7 +1445,7 @@ return str.substring(substrStart, substrStart + minLength)
 findSubstring("aabdec", "abc")//"abdec", The smallest substring having all characters of the pattern is "abdec"
 findSubstring("abdbca", "abc")//"bca", The smallest substring having all characters of the pattern is "bca".
 findSubstring("adcad", "abc")//"", No substring in the given string has all characters of the pattern.
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -1583,7 +1583,7 @@ function findWordConcatenation(str, words) {
 
 findWordConcatenation("catfoxcat", ["cat", "fox"])//[0, 3], The two substring containing both the words are "catfox" & "foxcat".
 findWordConcatenation("catcatfoxfox", ["cat", "fox"])//[3], The only substring containing both the words is "catfox".
-````
+```
 > [!NOTE]
 > **Language:** Java
 ````java
@@ -1645,7 +1645,7 @@ public class Solution {
     }
 }
 
-````
+```
 - The time complexity of the above algorithm will be `O(N * M * Len)` where `N` is the number of characters in the given string, `M` is the total number of `words`, and `Len` is the length of a word.
 - The space complexity of the algorithm is `O(M)` since at most, we will be storing all the `words` in the two <b>HashMaps</b>. In the worst case, we also need `O(N)` space for the resulting list. So, the overall space complexity of the algorithm will be `O(M+N)`.
 
