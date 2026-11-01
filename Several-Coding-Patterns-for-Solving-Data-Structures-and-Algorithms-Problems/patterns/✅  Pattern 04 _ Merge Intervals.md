@@ -28,6 +28,9 @@ The diagram above clearly shows a merging approach. Our algorithm will look like
 ````
 We will keep repeating the above two steps to merge `c` with the next interval if it overlaps with `c`.
 
+> [!NOTE]
+> **Language:** JavaScript
+
 ````js
 class Interval {
   constructor(start, end) {
@@ -98,7 +101,10 @@ console.log(`Merged intervals: ${result}`)
 //Output: [[1,6]]
 //Explanation: Since all the given intervals overlap, we merged them into one.
 ````
+
 #### OR 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function merge(intervals) {
   if(intervals.length < 2) return intervals
@@ -137,7 +143,9 @@ Explanation: Intervals [1,4] and [2,5] overlap
 ````
 
  We can follow the same approach as discussed above to find if any two intervals overlap.
- ````
+ > [!NOTE]
+> **Language:** JavaScript
+ ````js
  function anyOverlap(intervals) {
   //edge cases?
   if(intervals.length < 2) return false
@@ -188,6 +196,8 @@ Our overall algorithm will look like this:
 ````
 3. We will repeat the above two steps to merge `c` with the next overlapping interval.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 class Interval {
   constructor(start, end) {
@@ -268,7 +278,10 @@ for (i = 0; i < result.length; i++) {
 }
 console.log();
 ````
-#### OR 
+#### OR
+> [!NOTE]
+> **Language:** JavaScript
+
 ````js
 function insert(intervals, newInterval) {
   let merged = []
@@ -326,6 +339,9 @@ Again from the above diagram, the overlapping interval will be equal to:
 That is, the highest `startTime` and the lowest `endTime` will be the overlapping interval.
 
 So our algorithm will be to iterate through both the lists together to see if any two intervals overlap. If two intervals overlap, we will insert the overlapped part into a result list and move on to the next interval which is finishing early.
+
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findIntersection(firstIntervals, secondIntervals) {
   let result = []
@@ -370,6 +386,9 @@ https://leetcode.com/problems/meeting-rooms/
 > Given an array of intervals representing`N` appointments, find out if a person can <b>attend all the appointments</b>.
 
 The problem follows the [Merge Intervals pattern](#pattern-4--merge-intervals). We can sort all the intervals by `startTime` and then check if any two intervals overlap. A person will not be able to attend all appointments if any two appointments overlap.
+> [!NOTE]
+> **Language:** JavaScript
+
 ````js
 function canAttendAllAppointments(appointmentTimes) {
   //sort intervals by start time
@@ -404,6 +423,8 @@ Output:
 [3,6] and [5,7] conflict.
 ````
 ### REVIEW
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function whatAreTheConflicts(appointmentTimes)  {
   
@@ -471,6 +492,8 @@ So our algorithm will look like this:
 5. Now add `m1` to the heap.
 6. The heap will always have all the overlapping meetings, so we will need rooms for all of them. Keep a counter to remember the maximum size of the heap at any time which will be the minimum number of rooms needed.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function minMeetingRooms(meetings) {
   //JavaScript does not come with built in Heap, so I used an array to keep track of rooms and sorted by end time at each call
@@ -548,6 +571,8 @@ Explanation: Maximum CPU load will be 8 as all jobs overlap during the time inte
 ````
 
 The problem follows the [Merge Intervals pattern](#pattern-4--merge-intervals) and can easily be converted to <b>[Minimum Meeting Rooms](#🌟-minimum-meeting-rooms-hard)</b>. Similar to [Minimum Meeting Rooms](#🌟-minimum-meeting-rooms-hard) where we were trying to find the maximum number of meetings happening at any time, for  <b>Maximum CPU Load</b> we need to find the maximum number of `jobs` running at any time. We will need to keep a running count of the maximum  <b>CPU Load</b> at any time to find the overall maximum load.
+> [!NOTE]
+> **Language:** JavaScript
 
 ````js
 function findMaxCPULoad(jobs) {
@@ -597,6 +622,8 @@ One simple solution can be to put all employees' working hours in a list and sor
 [1,3], [2,4], [6,8], [9,12]
 ````
 We can now iterate through these intervals, and whenever we find non-overlapping intervals (e.g., `[2,4]` and `[6,8]`), we can calculate a free interval (e.g., `[4,6]`). 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findEmployeeFreeTime (schedules) {
   let freeTime = [];
