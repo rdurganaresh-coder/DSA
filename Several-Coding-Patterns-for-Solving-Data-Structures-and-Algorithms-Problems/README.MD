@@ -3,3 +3,4 @@
 ## Table of Contents
 
 * [1. Sliding Window](patterns/✅%20%20Pattern%2001%20_%20Sliding%20Window.md)
+* [1. Two Pointer](patterns/✅%20%20Pattern%2002_%20Two%20Pointers.md)
