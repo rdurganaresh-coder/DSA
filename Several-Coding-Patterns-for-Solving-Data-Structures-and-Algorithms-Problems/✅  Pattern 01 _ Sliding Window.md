@@ -38,8 +38,6 @@ findAvgOfSubarrays([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)
 > [!NOTE]
 > **Language:** Java
 ```java
-// Language: Java
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -117,8 +115,6 @@ findAveragesOfSubarrays([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)//[2.2, 2.8, 2.4, 3.6, 2
 > [!NOTE]
 > **Language:** Java
 ```java
-// Language: Java
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -169,6 +165,8 @@ https://leetcode.com/problems/largest-subarray-length-k/
 ### Brute Force
 
 A basic brute force solution will be to calculate the sum of all `K` sized subarrays of the given array to find the subarray with the highest sum. We can start from every index of the given array and add the next `K` elements to find the subarrays sum.
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function maxSubarrayOfSizeK(arr, k) {
   //brute force
@@ -202,6 +200,8 @@ If you observe closely, you will realize that to calculate the sum of a contiguo
 2. Add the new element getting included in the <i>sliding window</i>, i.e., the element coming right after the end of the window.
 
 This approach will save us from re-calculating the sum of the overlapping part of the <i>sliding window</i>. 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function maxSubarrayOfSizeK(arr, k) {
   //sliding window
@@ -250,7 +250,8 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
   - Check if the current window length is the smallest so far, and if so, remember its length.
   - Subtract the first element of the window from the running sum to shrink the sliding window.
 
-
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function smallestSubarrayWithGivenSum(arr, s) {
   //sliding window, BUT the window size is not fixed
@@ -310,6 +311,8 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 5. While shrinking, well decrement the characters frequency going out of the window and remove it from the <b>HashMap</b> if its frequency becomes zero.
 6. At the end of each step, well check if the current window length is the longest so far, and if so, remember its length.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function longestSubstringWithKdistinct(str, k) {
    // Given a string, find the length of the longest substring in it with no more than K distinct characters.
@@ -367,6 +370,8 @@ This problem follows the <b>Sliding Window pattern</b> and is quite similar to <
 In this problem, we need to find the length of the longest subarray with no more than two distinct characters (or fruit types!). 
 
 This transforms the current problem into Longest Substring with <b>K Distinct Characters</b> where `K=2`.
+> [!NOTE]
+> **Language:** JavaScript
 ### Map Class Solution
 ````js
 function totalFruit (fruits) {
@@ -413,6 +418,8 @@ totalFruit ([0,1,2,2])
 totalFruit ([1,2,3,2,2])
 //4,We can pick from trees [2,3,2,2]. If we had started at the first tree, we would only pick from trees [1,2].
 ````
+> [!NOTE]
+> **Language:** JavaScript
 ### Map Object Solution
 ````js
 function fruitsInBaskets(fruits) {
@@ -451,6 +458,8 @@ fruitsInBaskets(['A', 'B', 'C', 'B', 'B', 'C'])//5 , We can put 3 'B' in one bas
 https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/
 > Given a string, find the length of the longest substring in it with at most two distinct characters.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function lengthOfLongestSubstringTwoDistinct(s) {
     let windowStart = 0
@@ -497,6 +506,8 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 This problem follows the <b>Sliding Window pattern</b>, and we can use a similar dynamic <i>sliding window</i> strategy as discussed in <b>Longest Substring with K Distinct Characters</b>. We can use a <b>HashMap</b> to remember the last index of each character we have processed. Whenever we get a repeating character, we will shrink our <i>sliding window</i> to ensure that we always have distinct characters in the <i>sliding window</i>.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function nonRepeatSubstring(str) {
   // sliding window with hashmap
@@ -552,6 +563,8 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
   - If we have more than `K` remaining letters, we should shrink the window as we cannot replace more than `K` letters.
 
 While shrinking the window, we dont need to update `maxRepeatLetterCount` (hence, it represents the maximum repeating count of ANY letter for ANY window). Why dont we need to update this count when we shrink the window? Since we have to replace all the remaining letters to get the longest substring having the same letter in any window, we cant get a better answer from any other window even though all occurrences of the letter with frequency `maxRepeatLetterCount` is not in the current window.
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function lengthOfLongestSubstring(str, k) {
   let windowStart = 0
@@ -602,6 +615,8 @@ This problem follows the <b>Sliding Window pattern</b> and is quite similar to <
 
 Following a similar approach, well iterate through the array to add one number at a time in the window. Well also keep track of the maximum number of repeating `1`'s in the current window (lets call it `maxOnesCount`). So at any time, we know that we can have a window with `1`'s repeating `maxOnesCount` time, so we should try to replace the remaining `0`'s. If we have more than `K` remaining `0`'s, we should shrink the window as we are not allowed to replace more than `K` `0`'s.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function lengthOfLongestSubstring (arr, k) {
   let windowStart = 0
@@ -660,6 +675,8 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 - If at any time, the number of characters matched is equal to the number of distinct characters in the pattern (i.e., total characters in the <b>HashMap</b>), we have gotten our required permutation.
 - If the window size is greater than the length of the pattern, shrink the window to make it equal to the patterns size. At the same time, if the character going out was part of the pattern, put it back in the frequency <b>HashMap</b>.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findPermutation(str, pattern) {
   //sliding window
@@ -732,6 +749,9 @@ As we know, when we are not allowed to repeat characters while finding permutati
 > Write a function to return a list of starting indices of the anagrams of the pattern in the given string.
 
 This problem follows the <b>Sliding Window pattern</b> and is very similar to <b>Permutation in a String</b>. In this problem, we need to find every occurrence of any permutation of the pattern in the string. We will use a list to store the starting indices of the anagrams of the pattern in the string.
+
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findStringAnagrams(str, pattern){
   let windowStart = 0, matched = 0, charFreq = {}
@@ -799,6 +819,8 @@ This problem follows the <b>Sliding Window pattern</b> and has a lot of similari
 2. Whenever we have matched all the characters, we will try to shrink the window from the beginning, keeping track of the smallest substring that has all the matching characters.
 3. We will stop the shrinking process as soon as we remove a matched character from the <i>sliding window</i>. One thing to note here is that we could have redundant matching characters, e.g., we might have two a in the <i>sliding window</i> when we only need one a. In that case, when we encounter the first a, we will simply shrink the window without decrementing the matched count. We will decrement the matched count when the second a goes out of the window.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findSubstring(str, pattern) {
   let windowStart = 0
@@ -870,6 +892,8 @@ This problem follows the <b>Sliding Window pattern</b> and has a lot of similari
 4. If a word is not found or has a higher frequency than required, we can move on to the next character in the string.
 5. Store the index if we have found all the `words`.
 
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findWordConcatenation(str, words) {
   if(words.length === 0 || words[0].length === 0) {
