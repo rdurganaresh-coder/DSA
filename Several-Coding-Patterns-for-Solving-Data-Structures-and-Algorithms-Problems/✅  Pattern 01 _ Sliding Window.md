@@ -16,7 +16,7 @@ A <b>brute-force</b> algorithm will calculate the sum of every 5-element contigu
 > [!NOTE]
 > **Language:** JavaScript
 
-````js
+```js
 function findAvgOfSubarrays(arr, K) {
   const results = []
   
@@ -77,7 +77,7 @@ The efficient way to solve this problem would be to visualize each contiguous su
 Here is the algorithm for the <b>Sliding Window</b> approach:
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function findAveragesOfSubarrays(arr, k) {
   //sliding window approach
   
@@ -167,7 +167,7 @@ https://leetcode.com/problems/largest-subarray-length-k/
 A basic brute force solution will be to calculate the sum of all `K` sized subarrays of the given array to find the subarray with the highest sum. We can start from every index of the given array and add the next `K` elements to find the subarrays sum.
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function maxSubarrayOfSizeK(arr, k) {
   //brute force
   let maxSum = 0
@@ -194,7 +194,7 @@ maxSubarrayOfSizeK(2, [2, 3, 4, 1, 5])//7
 ```
 > [!NOTE]
 > **Language:** Java
-````java
+```java
 public class Main {
     public static int maxSubarrayOfSizeK(int k, int[] arr) {
         // brute force
@@ -232,7 +232,7 @@ If you observe closely, you will realize that to calculate the sum of a contiguo
 This approach will save us from re-calculating the sum of the overlapping part of the <i>sliding window</i>. 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function maxSubarrayOfSizeK(arr, k) {
   //sliding window
   let maxSum = 0
@@ -262,7 +262,7 @@ function maxSubarrayOfSizeK(arr, k) {
 
 maxSubarrayOfSizeK([2, 1, 5, 1, 3, 2], 3)//9 
 maxSubarrayOfSizeK([2, 3, 4, 1, 5], 2)//7 
-````
+```
 > [!NOTE]
 > **Language:** JavaScript
 ```java
@@ -319,7 +319,7 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function smallestSubarrayWithGivenSum(arr, s) {
   //sliding window, BUT the window size is not fixed
   let windowSum = 0
@@ -358,7 +358,7 @@ smallestSubarrayWithGivenSum([2, 1, 5, 2, 3, 2], 7)//2
 smallestSubarrayWithGivenSum([2, 1, 5, 2, 8], 7)//1
 smallestSubarrayWithGivenSum([3, 4, 1, 1, 6], 8)//3
 
-````
+```
 > [!NOTE]
 > **Language:** JavaS
 ```java
@@ -417,7 +417,7 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function longestSubstringWithKdistinct(str, k) {
    // Given a string, find the length of the longest substring in it with no more than K distinct characters.
   let windowStart = 0
@@ -456,7 +456,7 @@ function longestSubstringWithKdistinct(str, k) {
 longestSubstringWithKdistinct("araaci", 2)//4, The longest substring with no more than '2' distinct characters is "araa".
 longestSubstringWithKdistinct("araaci", 1)//2, The longest substring with no more than '1' distinct characters is "aa".
 longestSubstringWithKdistinct("cbbebi", 3)//5, The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi".
-````
+```
 > [!NOTE]
 > **Language:** JavaScript
 ```java
@@ -528,7 +528,7 @@ This transforms the current problem into Longest Substring with <b>K Distinct Ch
 > [!NOTE]
 > **Language:** JavaScript
 ### Map Class Solution
-````js
+```js
 function totalFruit (fruits) {
   let windowStart = 0
   let windowMax = 0
@@ -572,7 +572,7 @@ totalFruit ([0,1,2,2])
 
 totalFruit ([1,2,3,2,2])
 //4,We can pick from trees [2,3,2,2]. If we had started at the first tree, we would only pick from trees [1,2].
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -623,7 +623,7 @@ public class Solution {
 > [!NOTE]
 > **Language:** JavaScript
 ### Map Object Solution
-````js
+```js
 function fruitsInBaskets(fruits) {
   let windowStart = 0; 
   let maxLength = 0; 
@@ -653,7 +653,7 @@ function fruitsInBaskets(fruits) {
 
 fruitsInBaskets(['A', 'B', 'C', 'A', 'C'])//3 , We can put 2 'C' in one basket and one 'A' in the other from the subarray ['C', 'A', 'C']
 fruitsInBaskets(['A', 'B', 'C', 'B', 'B', 'C'])//5 , We can put 3 'B' in one basket and two 'C' in the other basket. This can be done if we start with the second letter: ['B', 'C', 'B', 'B', 'C']
-````
+```
 > [!NOTE]
 > **Language:** Java
 ```java
@@ -708,7 +708,7 @@ https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-charac
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function lengthOfLongestSubstringTwoDistinct(s) {
     let windowStart = 0
     let maxLength = 0
@@ -798,7 +798,7 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function nonRepeatSubstring(str) {
   // sliding window with hashmap
   
@@ -903,7 +903,7 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 While shrinking the window, we dont need to update `maxRepeatLetterCount` (hence, it represents the maximum repeating count of ANY letter for ANY window). Why dont we need to update this count when we shrink the window? Since we have to replace all the remaining letters to get the longest substring having the same letter in any window, we cant get a better answer from any other window even though all occurrences of the letter with frequency `maxRepeatLetterCount` is not in the current window.
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function lengthOfLongestSubstring(str, k) {
   let windowStart = 0
   let maxLength = 0
@@ -1004,7 +1004,7 @@ Following a similar approach, well iterate through the array to add one number a
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function lengthOfLongestSubstring (arr, k) {
   let windowStart = 0
   let maxLength = 0
@@ -1109,7 +1109,7 @@ This problem follows the <b>Sliding Window pattern</b>, and we can use a similar
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function findPermutation(str, pattern) {
   //sliding window
   let windowStart = 0
@@ -1390,7 +1390,7 @@ This problem follows the <b>Sliding Window pattern</b> and has a lot of similari
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function findSubstring(str, pattern) {
   let windowStart = 0
   let matched = 0
@@ -1530,7 +1530,7 @@ This problem follows the <b>Sliding Window pattern</b> and has a lot of similari
 
 > [!NOTE]
 > **Language:** JavaScript
-````js
+```js
 function findWordConcatenation(str, words) {
   if(words.length === 0 || words[0].length === 0) {
     return []
