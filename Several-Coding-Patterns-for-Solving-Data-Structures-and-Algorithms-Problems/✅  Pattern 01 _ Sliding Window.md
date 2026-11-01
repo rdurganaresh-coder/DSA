@@ -1585,7 +1585,7 @@ findWordConcatenation("catcatfoxfox", ["cat", "fox"])//[3], The only substring c
 ```
 > [!NOTE]
 > **Language:** Java
-````java
+```java
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -1645,6 +1645,7 @@ public class Solution {
 }
 
 ```
+
 - The time complexity of the above algorithm will be `O(N * M * Len)` where `N` is the number of characters in the given string, `M` is the total number of `words`, and `Len` is the length of a word.
 - The space complexity of the algorithm is `O(M)` since at most, we will be storing all the `words` in the two <b>HashMaps</b>. In the worst case, we also need `O(N)` space for the resulting list. So, the overall space complexity of the algorithm will be `O(M+N)`.
 
