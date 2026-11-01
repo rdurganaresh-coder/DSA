@@ -38,6 +38,57 @@ function pairWithTargetSum(nums, target) {
   }
 }
 ````
+---
+> [!NOTE]
+> **Language:** Java
+- This approach checks all possible pairs of elements in the array using two nested loops to see if their sum matches the target.
+```java
+```java
+public class Solution {
+    public static int[] pairWithTargetSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if ((nums[i] + nums[j]) == target) {
+                    if (i != j) {
+                        return new int[]{i, j};
+                    }
+                }
+            }
+        }
+        return new int[]{};
+    }
+}
+```
+### Complexity Analysis
+* **Time Complexity:** $O(N^2)$ due to the nested loops traversing the array.
+* **Space Complexity:** $O(1)$ because it only uses a few pointers and no extra data structures.
+
+---
+## Approach 2: Optimized (HashMap)
+
+This approach uses a Hash Map to store the numbers and their indices as we iterate. For each number, it checks if its complement (`target - current_number`) already exists in the map.
+
+```java
+import java.util.HashMap;
+
+public class Solution {
+    public static int[] pairWithTargetSumOptimized(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            map.put(nums[i], i);
+        }
+        return new int[]{};
+    }
+}
+```
+### Complexity Analysis
+* **Time Complexity:** $O(N)$ as it iterates through the array exactly once, looking up items in the map in $O(1)$ time on average.
+* **Space Complexity:** $O(N)$ because, in the worst-case scenario, it stores up to $N$ elements in the Hash Map.
 ### Two pointer Solution
 Assume the input is sorted
 > [!NOTE]
@@ -69,6 +120,10 @@ pairWithTargetSum([1, 2, 3, 4, 6], 6)
 pairWithTargetSum([2, 5, 9, 11], 11)
 //[0,2]
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
 
@@ -110,7 +165,10 @@ pairWithTargetSum([2, 7, 11, 15], 9)//[0, 1]
 pairWithTargetSum([3, 2, 4], 6)//[1, 2]
 pairWithTargetSum([3, 3], 6)//[0, 1]
 ````
-
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The <b>space complexity</b> will also be `O(N)`, as, in the worst case, we will be pushing `N` numbers in the HashTable.
 ## Remove Duplicates (easy)
@@ -150,6 +208,11 @@ removeDuplicates([2, 3, 3, 3, 6, 9, 9])
 removeDuplicates([2, 2, 2, 11])
 //2, The first two elements after removing the duplicates will be [2, 11].
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
 
@@ -182,6 +245,11 @@ removeElement([2, 11, 2, 2, 1], 2);
 // 2
 // The array, [11, 1], will have a length of 2 after removing every 'key'.
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
 
@@ -232,6 +300,10 @@ makeSquares([-2, -1, 0, 2, 3])
 makeSquares([-3, -1, 0, 1, 2])
 //[0, 1, 1, 4, 9]
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The above algorithm’s <b>time complexity</b> will be `O(N)` as we are iterating the input array only once.
 - The above algorithm’s <b>space complexity</b> will also be `O(N)`; this space will be used for the output array.
 
@@ -297,6 +369,11 @@ searchTriplets([-3, 0, 1, 2, -1, 1, -2]);
 searchTriplets([-5, 2, -1, -2, 3]); 
 //[[-5, 2, 3], [-2, -1, 3]]
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - Sorting the array will take `O(N * logN)`. The `searchPair()` function will take `O(N)`. As we are calling `searchPair()` for every number in the input array, this means that overall `searchTriplets()` will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`.
 - Ignoring the space required for the output array, the <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
 
@@ -358,6 +435,11 @@ tripletSumCloseToTarget([-3, -1, 1, 2], 1)//0, The triplet [-3, 1, 2] has the cl
 tripletSumCloseToTarget([1, 0, 1, 1], 100)//3, The triplet [1, 1, 1] has the closest sum to the target.
 tripletSumCloseToTarget([-1,2,1,-4], 1)//2, The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - Sorting the array will take `O(N* logN)`. Overall, the function will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`
 - The above algorithm’s <b>space complexity</b> will be `O(N)`, which is required for sorting.
 ## Triplets with Smaller Sum (medium)
@@ -409,6 +491,11 @@ tripletWithSmallerSum ([-2,0,1,3], 2)//2, Because there are two triplets which s
 tripletWithSmallerSum ([], 0)//0
 tripletWithSmallerSum ([0], 0)//0
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - Sorting the array will take `O(N * logN)`. The `searchPair()` will take `O(N)`. So, overall `searchTriplets()` will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`.
 - The <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting if we are not using an </i>in-place</i> sorting algorithm.
 
@@ -448,6 +535,11 @@ function searchPair(arr, targetSum, first, triplets){
   }
 }
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - Sorting the array will take `O(N * logN)`. The `searchPair()`, in this case, will take `O(N^2)`; the main while loop will run in `O(N)` but the nested for loop can also take `O(N)` - this will happen when the target sum is bigger than every triplet in the array.  So, overall `searchTriplets()` will take `O(N * logN + N^3)`, which is asymptotically equivalent to `O(N^3)`.
 - Ignoring the space required for the output array, the <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
 ## 🌟 Subarrays with Product Less than a Target (medium)
@@ -490,6 +582,11 @@ findSubarrays([2, 5, 3, 10], 30)//[2], [5], [2, 5], [3], [5, 3], [10] There are 
 findSubarrays([8, 2, 6, 5], 50)//[8], [2], [8, 2], [6], [2, 6], [5], [6, 5] There are seven contiguous subarrays whose product is less than the target.
 findSubarrays([10, 5, 2, 6], 100)//The 8 subarrays that have product less than 100 are: [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6].
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 
 - The main for-loop managing the sliding window takes `O(N)` but creating subarrays can take up to `O(N^2)` in the worst case. Therefore overall, our algorithm will take `O(N^3)`.
 - Ignoring the space required for the output list, the algorithm runs in `O(N)` space which is used for the temp list.
@@ -545,6 +642,11 @@ function dutchFlagSort(arr) {
 console.log(dutchFlagSort([1, 0, 2, 1, 0]))//[0 0 1 1 2]
 console.log(dutchFlagSort([2, 2, 0, 1, 2, 0]))//[0 0 1 2 2 2 ]
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)` as we are iterating the input array only once.
 - The algorithm runs in constant space `O(1)`.
 
@@ -614,6 +716,11 @@ function searchPairs(arr, targetSum, first, second, quads) {
 searchQuads([4,1,2,-1,1,-3], 1)//-3, -1, 1, 4], [-3, 1, 1, 2]
 searchQuads([2,0,-1,1,-2,2], 2)//[-2, 0, 2, 2], [-1, 0, 1, 2]
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - Sorting the array will take `O(N*logN)`. Overall `searchQuads()` will take `O(N * logN + N³)`, which is asymptotically equivalent to `O(N³)`.
 - The <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
 ## 🌟 Comparing Strings containing Backspaces (medium)
@@ -676,6 +783,11 @@ backspaceCompare("xy#z", "xyz#")//false, After applying backspaces the strings b
 backspaceCompare("xp#", "xyz##")//true, After applying backspaces the strings become "x" and "x" respectively.  In "xyz##", the first '#' removes the character 'z' and the second '#' removes the character 'y'.
 backspaceCompare("xywrrmp", "xywrrmu#p")//true, After applying backspaces the strings become "xywrrmp" and "xywrrmp" respectively.
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(M+N)` where `M` and `N` are the lengths of the two input strings respectively.
 - The algorithm runs in constant space `O(1)`.
 
@@ -757,5 +869,10 @@ shortestWindowSort([1,2,3])
 shortestWindowSort([3,2,1])
 // 3, The whole array needs to be sorted.
 ````
+
+> [!NOTE]
+> **Language:** Java
+```java
+```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`.
 - The algorithm runs in constant space `O(1)`.
