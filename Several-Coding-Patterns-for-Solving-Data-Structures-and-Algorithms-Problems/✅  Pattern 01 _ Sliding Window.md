@@ -77,6 +77,8 @@ The inefficiency is that for any two consecutive subarrays of size `5`, the over
 The efficient way to solve this problem would be to visualize each contiguous subarray as a <i>sliding window</i> of `5` elements. This means that we will slide the window by one element when we move on to the next subarray. To reuse the sum from the previous subarray, we will subtract the element going out of the window and add the element now being included in the <i>sliding window</i>. This will save us from going through the whole subarray to find the sum and, as a result, the algorithm complexity will reduce to `O(N)`.
 
 Here is the algorithm for the <b>Sliding Window</b> approach:
+> [!NOTE]
+> **Language:** JavaScript
 ````js
 function findAveragesOfSubarrays(arr, k) {
   //sliding window approach
@@ -112,6 +114,55 @@ function findAveragesOfSubarrays(arr, k) {
 
 findAveragesOfSubarrays([1, 3, 2, 6, -1, 4, 1, 8, 2], 5)//[2.2, 2.8, 2.4, 3.6, 2.8]
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+// Language: Java
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main {
+    public static List<Double> findAveragesOfSubarrays(int[] arr, int k) {
+        // sliding window approach
+        List<Double> results = new ArrayList<>();
+        double windowSum = 0;
+        int windowStart = 0;
+
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            // add the next element
+            windowSum += arr[windowEnd];
+
+            // slide the window forward
+            // we don't need to slide if we have not hit the required window size of k
+            if (windowEnd >= k - 1) {
+                // we are AUTOMATICALLY returning the window average once we hit the window size of k
+                // and pushing to the output array
+                results.add(windowSum / k);
+
+                // subtracting the element going out
+                windowSum -= arr[windowStart];
+
+                // then sliding the window forward
+                windowStart++;
+
+                // adding the element coming in, in the outer/previous loop
+                // and repeating this process until we hit the end of the array
+            }
+        }
+        return results;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 2, 6, -1, 4, 1, 8, 2};
+        int k = 5;
+        List<Double> output = findAveragesOfSubarrays(arr, k);
+        System.out.println(output); // Output: [2.2, 2.8, 2.4, 3.6, 2.8]
+    }
+}
+
+```
 ## Maximum Sum Subarray of Size K (easy)
 https://leetcode.com/problems/largest-subarray-length-k/
 > Given an array of positive numbers and a positive number `K`, find the maximum sum of any contiguous subarray of size `K`.
