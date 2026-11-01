@@ -42,7 +42,7 @@ function pairWithTargetSum(nums, target) {
 > [!NOTE]
 > **Language:** Java
 - This approach checks all possible pairs of elements in the array using two nested loops to see if their sum matches the target.
-```java
+
 ```java
 public class Solution {
     public static int[] pairWithTargetSum(int[] nums, int target) {
@@ -123,6 +123,38 @@ pairWithTargetSum([2, 5, 9, 11], 11)
 > [!NOTE]
 > **Language:** Java
 ```java
+public class Solution {
+    public static int[] pairWithTargetSum(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length - 1;
+        
+        while (start < end) {
+            int currentSum = arr[start] + arr[end];
+            
+            if (currentSum == target) {
+                return new int[]{start, end};
+            }
+            
+            if (currentSum < target) {
+                start++;
+            } else {
+                end--;
+            }
+        }
+        return new int[]{-1, -1}; // Returns [-1, -1] if no matching pair is found
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] result1 = pairWithTargetSum(new int[]{1, 2, 3, 4, 6}, 6);
+        System.out.println("[" + result1[0] + ", " + result1[1] + "]"); // Output: [1, 3]
+
+        // Test Case 2
+        int[] result2 = pairWithTargetSum(new int[]{2, 5, 9, 11}, 11);
+        System.out.println("[" + result2[0] + ", " + result2[1] + "]"); // Output: [0, 2]
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
@@ -168,6 +200,40 @@ pairWithTargetSum([3, 3], 6)//[0, 1]
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.HashMap;
+import java.util.Arrays;
+
+public class Solution {
+    public static int[] pairWithTargetSum(int[] nums, int target) {
+        // Using a HashMap as our HashTable
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for (int i = 0; i < nums.length; i++) {
+            int item = nums[i];
+            int complement = target - item;
+            
+            // 1. Search for 'Y' (Target - X) in the HashTable
+            if (map.containsKey(complement)) {
+                return new int[]{map.get(complement), i};
+            }
+            
+            // 2. Otherwise, insert 'X' with its index into the HashTable
+            map.put(item, i);
+        }
+        
+        return new int[]{-1, -1};
+    }
+
+    public static void main(String[] args) {
+        // Test Cases
+        System.out.println(Arrays.toString(pairWithTargetSum(new int[]{1, 2, 3, 4, 6}, 6)));   // [1, 3]
+        System.out.println(Arrays.toString(pairWithTargetSum(new int[]{2, 5, 9, 11}, 11)));   // [0, 2]
+        System.out.println(Arrays.toString(pairWithTargetSum(new int[]{2, 7, 11, 15}, 9)));   // [0, 1]
+        System.out.println(Arrays.toString(pairWithTargetSum(new int[]{3, 2, 4}, 6)));        // [1, 2]
+        System.out.println(Arrays.toString(pairWithTargetSum(new int[]{3, 3}, 6)));           // [0, 1]
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The <b>space complexity</b> will also be `O(N)`, as, in the worst case, we will be pushing `N` numbers in the HashTable.
@@ -212,6 +278,44 @@ removeDuplicates([2, 2, 2, 11])
 > [!NOTE]
 > **Language:** Java
 ```java
+public class Solution {
+    public static int removeDuplicates(int[] arr) {
+        // Handle empty array edge case safely
+        if (arr.length == 0) {
+            return 0;
+        }
+
+        // Pointer for iterating
+        int i = 1;
+        
+        // Pointer for placing the next non-duplicate element
+        int nextNonDupe = 1;
+
+        while (i < arr.length) {
+            if (arr[nextNonDupe - 1] != arr[i]) {
+                arr[nextNonDupe] = arr[i];
+                nextNonDupe++;
+            }
+            i++;
+        }
+        return nextNonDupe;  
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {2, 3, 3, 3, 6, 9, 9};
+        int length1 = removeDuplicates(arr1);
+        System.out.println("Length: " + length1); // Output: 4
+        // Array becomes: [2, 3, 6, 9, 6, 9, 9]
+
+        // Test Case 2
+        int[] arr2 = {2, 2, 2, 11};
+        int length2 = removeDuplicates(arr2);
+        System.out.println("Length: " + length2); // Output: 2
+        // Array becomes: [2, 11, 2, 11]
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
@@ -249,6 +353,35 @@ removeElement([2, 11, 2, 2, 1], 2);
 > [!NOTE]
 > **Language:** Java
 ```java
+public class ArrayModifier {
+    public static int removeElement(int[] arr, int key) {
+        // Points to the index of the next element that is not the key
+        int nextElement = 0; 
+        
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != key) {
+                arr[nextElement] = arr[i];
+                nextElement++;
+            }
+        }
+        
+        // Returns the new length of the array after removing 'key'
+        return nextElement; 
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {3, 2, 3, 6, 3, 10, 9, 3};
+        int length1 = removeElement(arr1, 3); 
+        System.out.println(length1); // Output: 4
+        
+        // Test Case 2
+        int[] arr2 = {2, 11, 2, 2, 1};
+        int length2 = removeElement(arr2, 2);
+        System.out.println(length2); // Output: 2
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`, where `N` is the total number of elements in the given array.
 - The algorithm runs in constant space `O(1)`.
@@ -303,6 +436,45 @@ makeSquares([-3, -1, 0, 1, 2])
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.Arrays;
+
+public class SortedSquares {
+    public static int[] makeSquares(int[] arr) {
+        int n = arr.length;
+        int[] squares = new int[n];
+        int highestSquareIndex = n - 1;
+        int start = 0;
+        int end = n - 1;
+
+        while (start <= end) {
+            int startSquare = arr[start] * arr[start];
+            int endSquare = arr[end] * arr[end];
+
+            if (startSquare > endSquare) {
+                squares[highestSquareIndex] = startSquare;
+                start++;
+            } else {
+                squares[highestSquareIndex] = endSquare;
+                end--;
+            }
+            highestSquareIndex--;
+        }
+        return squares;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {-2, -1, 0, 2, 3};
+        int[] result1 = makeSquares(arr1);
+        System.out.println(Arrays.toString(result1)); // Output: [0, 1, 4, 4, 9]
+
+        // Test Case 2
+        int[] arr2 = {-3, -1, 0, 1, 2};
+        int[] result2 = makeSquares(arr2);
+        System.out.println(Arrays.toString(result2)); // Output: [0, 1, 1, 4, 9]
+    }
+}
+
 ```
 - The above algorithm’s <b>time complexity</b> will be `O(N)` as we are iterating the input array only once.
 - The above algorithm’s <b>space complexity</b> will also be `O(N)`; this space will be used for the output array.
@@ -373,6 +545,68 @@ searchTriplets([-5, 2, -1, -2, 3]);
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TripletSumToZero {
+    public static List<List<Integer>> searchTriplets(int[] arr) {
+        // Sort the array in place
+        Arrays.sort(arr);
+        List<List<Integer>> triplets = new ArrayList<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            // Skip the same element to avoid duplicates
+            if (i > 0 && arr[i] == arr[i - 1]) {
+                continue;
+            }
+            searchPair(arr, -arr[i], i + 1, triplets);
+        }
+        return triplets;
+    }
+
+    private static void searchPair(int[] arr, int targetSum, int start, List<List<Integer>> triplets) {
+        int end = arr.length - 1;
+
+        while (start < end) {
+            int currentSum = arr[start] + arr[end];
+            if (currentSum == targetSum) {
+                // Found the triplet - add it as a list to our results
+                triplets.add(Arrays.asList(-targetSum, arr[start], arr[end]));
+                start++;
+                end--;
+
+                // Skip same element to avoid duplicates from left
+                while (start < end && arr[start] == arr[start - 1]) {
+                    start++;
+                }
+                // Skip same element to avoid duplicates from right
+                while (start < end && arr[end] == arr[end + 1]) {
+                    end--;
+                }
+            } else if (targetSum > currentSum) {
+                // We need a pair with a bigger sum
+                start++;
+            } else {
+                // We need a pair with a smaller sum
+                end--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {-3, 0, 1, 2, -1, 1, -2};
+        System.out.println(searchTriplets(arr1)); 
+        // Output: [[-3, 1, 2], [-2, 0, 2], [-2, 1, 1], [-1, 0, 1]]
+
+        // Test Case 2
+        int[] arr2 = {-5, 2, -1, -2, 3};
+        System.out.println(searchTriplets(arr2)); 
+        // Output: [[-5, 2, 3], [-2, -1, 3]]
+    }
+}
+
 ```
 - Sorting the array will take `O(N * logN)`. The `searchPair()` function will take `O(N)`. As we are calling `searchPair()` for every number in the input array, this means that overall `searchTriplets()` will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`.
 - Ignoring the space required for the output array, the <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
@@ -439,6 +673,62 @@ tripletSumCloseToTarget([-1,2,1,-4], 1)//2, The sum that is closest to the targe
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.Arrays;
+
+public class TripletSumCloseToTarget {
+    public static int tripletSumCloseToTarget(int[] arr, int targetSum) {
+        // Sort the array in place
+        Arrays.sort(arr);
+        
+        int smallestDifference = Integer.MAX_VALUE;
+
+        // Loop runs up to arr.length - 2 to leave room for the two pointers
+        for (int i = 0; i < arr.length - 2; i++) {
+            int start = i + 1;
+            int end = arr.length - 1;
+
+            while (start < end) {
+                int targetDifference = targetSum - arr[i] - arr[start] - arr[end];
+
+                // Found a triplet with an exact sum
+                if (targetDifference == 0) {
+                    return targetSum; // targetSum - 0 is just targetSum
+                }
+
+                // Handle updating the smallest difference. 
+                // We check if it's a tighter gap, OR if gaps are equal, choose the one yielding a smaller sum (larger targetDifference)
+                if (Math.abs(targetDifference) < Math.abs(smallestDifference) || 
+                   (Math.abs(targetDifference) == Math.abs(smallestDifference) && targetDifference > smallestDifference)) {
+                    smallestDifference = targetDifference;
+                }
+
+                if (targetDifference > 0) {
+                    // We need a triplet with a bigger sum
+                    start++;
+                } else {
+                    // We need a triplet with a smaller sum
+                    end--;
+                }
+            }
+        }
+        return targetSum - smallestDifference;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        System.out.println(tripletSumCloseToTarget(new int[]{-2, 0, 1, 2}, 2));  // Output: 1
+        
+        // Test Case 2
+        System.out.println(tripletSumCloseToTarget(new int[]{-3, -1, 1, 2}, 1)); // Output: 0
+        
+        // Test Case 3
+        System.out.println(tripletSumCloseToTarget(new int[]{1, 0, 1, 1}, 100)); // Output: 3
+        
+        // Test Case 4
+        System.out.println(tripletSumCloseToTarget(new int Schubert[]{-1, 2, 1, -4}, 1)); // Output: 2
+    }
+}
+
 ```
 - Sorting the array will take `O(N* logN)`. Overall, the function will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`
 - The above algorithm’s <b>space complexity</b> will be `O(N)`, which is required for sorting.
@@ -495,6 +785,59 @@ tripletWithSmallerSum ([0], 0)//0
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.Arrays;
+
+public class TripletWithSmallerSum {
+    public static int tripletWithSmallerSum(int[] arr, int target) {
+        // Sort the array in place
+        Arrays.sort(arr);
+        int count = 0;
+        
+        // Loop runs up to arr.length - 2 to allow room for the two pointers
+        for (int i = 0; i < arr.length - 2; i++) {
+            count += searchPair(arr, target - arr[i], i);
+        }
+        return count;
+    }
+
+    private static int searchPair(int[] arr, int targetSum, int first) {
+        int count = 0;
+        int start = first + 1;
+        int end = arr.length - 1;
+        
+        while (start < end) {
+            if (arr[start] + arr[end] < targetSum) {
+                // Since the array is sorted, if arr[start] + arr[end] < targetSum,
+                // then replacing arr[end] with any element between start and end 
+                // will also result in a valid sum.
+                count += end - start;
+                start++;
+            } else {
+                // We need a pair with a smaller sum
+                end--;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        System.out.println(tripletWithSmallerSum(new int[]{-1, 0, 2, 3}, 3));    // Output: 2
+        
+        // Test Case 2
+        System.out.println(tripletWithSmallerSum(new int[]{-1, 4, 2, 1, 3}, 5)); // Output: 4
+        
+        // Test Case 3
+        System.out.println(tripletWithSmallerSum(new int[]{-2, 0, 1, 3}, 2));    // Output: 2
+        
+        // Test Case 4
+        System.out.println(tripletWithSmallerSum(new int[]{}, 0));               // Output: 0
+        
+        // Test Case 5
+        System.out.println(tripletWithSmallerSum(new int[]{0}, 0));              // Output: 0
+    }
+}
+
 ```
 - Sorting the array will take `O(N * logN)`. The `searchPair()` will take `O(N)`. So, overall `searchTriplets()` will take `O(N * logN + N^2)`, which is asymptotically equivalent to `O(N^2)`.
 - The <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting if we are not using an </i>in-place</i> sorting algorithm.
@@ -539,6 +882,54 @@ function searchPair(arr, targetSum, first, triplets){
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class TripletWithSmallerSumList {
+    public static List<List<Integer>> tripletWithSmallerSum(int[] arr, int target) {
+        // Sort the array in place
+        Arrays.sort(arr);
+        List<List<Integer>> triplets = new ArrayList<>();
+        
+        for (int i = 0; i < arr.length - 2; i++) {
+            searchPair(arr, target - arr[i], i, triplets);
+        }
+        return triplets;
+    }
+
+    private static void searchPair(int[] arr, int targetSum, int first, List<List<Integer>> triplets) {
+        int start = first + 1;
+        int end = arr.length - 1;
+        
+        while (start < end) {
+            if (arr[start] + arr[end] < targetSum) {
+                // Since arr[start] + arr[end] < targetSum, replacing arr[end] 
+                // with any element from 'end' down to 'start + 1' is also valid.
+                for (int i = end; i > start; i--) {
+                    triplets.add(Arrays.asList(arr[first], arr[start], arr[i]));
+                }
+                start++;
+            } else {
+                // We need a pair with a smaller sum
+                end--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {-1, 0, 2, 3};
+        System.out.println(tripletWithSmallerSum(arr1, 3));
+        // Output: [[-1, 0, 3], [-1, 0, 2]]
+
+        // Test Case 2
+        int[] arr2 = {-1, 4, 2, 1, 3};
+        System.out.println(tripletWithSmallerSum(arr2, 5));
+        // Output: [[-1, 1, 4], [-1, 1, 3], [-1, 1, 2], [-1, 2, 3]]
+    }
+}
+
 ```
 - Sorting the array will take `O(N * logN)`. The `searchPair()`, in this case, will take `O(N^2)`; the main while loop will run in `O(N)` but the nested for loop can also take `O(N)` - this will happen when the target sum is bigger than every triplet in the array.  So, overall `searchTriplets()` will take `O(N * logN + N^3)`, which is asymptotically equivalent to `O(N^3)`.
 - Ignoring the space required for the output array, the <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
@@ -586,6 +977,57 @@ findSubarrays([10, 5, 2, 6], 100)//The 8 subarrays that have product less than 1
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class SubarrayProductLessThanTarget {
+    public static List<List<Integer>> findSubarrays(int[] arr, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        double product = 1; // Using double to prevent integer overflow for large products
+        int start = 0;
+
+        for (int end = 0; end < arr.length; end++) {
+            product *= arr[end];
+            
+            // Shrink the window until the product is less than the target
+            while (product >= target && start <= end) {
+                product /= arr[start];
+                start++;
+            }
+
+            // Since the product of all numbers from start to end is less than the target,
+            // all subarrays ending at 'end' and starting from anywhere between 'start' and 'end' 
+            // will also have a product less than the target.
+            LinkedList<Integer> tempList = new LinkedList<>();
+            for (int i = end; i >= start; i--) {
+                tempList.addFirst(arr[i]); // Equivalent to JS unshift()
+                
+                // We create a new copy of the current state of tempList and add it to the result
+                result.add(new ArrayList<>(tempList));
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1
+        int[] arr1 = {2, 5, 3, 10};
+        System.out.println(findSubarrays(arr1, 30));
+        // Output: [[2], [5], [2, 5], [3], [5, 3], [10]]
+
+        // Test Case 2
+        int[] arr2 = {8, 2, 6, 5};
+        System.out.println(findSubarrays(arr2, 50));
+        // Output: [[8], [2], [8, 2], [6], [2, 6], [5], [6, 5]]
+
+        // Test Case 3
+        int[] arr3 = {10, 5, 2, 6};
+        System.out.println(findSubarrays(arr3, 100));
+        // Output: [[10], [5], [10, 5], [2], [5, 2], [6], [2, 6], [5, 2, 6]]
+    }
+}
+
 ```
 
 - The main for-loop managing the sliding window takes `O(N)` but creating subarrays can take up to `O(N^2)` in the worst case. Therefore overall, our algorithm will take `O(N^3)`.
@@ -646,6 +1088,48 @@ console.log(dutchFlagSort([2, 2, 0, 1, 2, 0]))//[0 0 1 2 2 2 ]
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.Arrays;
+
+public class DutchNationalFlag {
+    
+    public static int[] dutchFlagSort(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        int i = 0;
+        
+        while (i <= high) {
+            if (arr[i] == 0) {
+                // Swap arr[i] and arr[low]
+                int temp = arr[i];
+                arr[i] = arr[low];
+                arr[low] = temp;
+                
+                i++;
+                low++;
+            } else if (arr[i] == 1) {
+                i++;
+            } else { // Case for arr[i] == 2
+                // Swap arr[i] and arr[high]
+                int temp = arr[i];
+                arr[i] = arr[high];
+                arr[high] = temp;
+                
+                // Do not increment i, as the swapped element needs validation
+                high--;
+            }
+        }
+        return arr;
+    }
+
+    public static void main(String[] args) {
+        int[] test1 = {1, 0, 2, 1, 0};
+        System.out.println(Arrays.toString(dutchFlagSort(test1))); // [0, 0, 1, 1, 2]
+
+        int[] test2 = {2, 2, 0, 1, 2, 0};
+        System.out.println(Arrays.toString(dutchFlagSort(test2))); // [0, 0, 1, 2, 2, 2]
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)` as we are iterating the input array only once.
 - The algorithm runs in constant space `O(1)`.
@@ -720,6 +1204,76 @@ searchQuads([2,0,-1,1,-2,2], 2)//[-2, 0, 2, 2], [-1, 0, 1, 2]
 > [!NOTE]
 > **Language:** Java
 ```java
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FourSum {
+
+    public static List<List<Integer>> searchQuads(int[] arr, int target) {
+        // Sort the array to use two-pointer technique
+        Arrays.sort(arr);
+        List<List<Integer>> quads = new ArrayList<>();
+
+        for (int i = 0; i < arr.length - 3; i++) {
+            // Skip the same element to avoid duplicate quadruplets
+            if (i > 0 && arr[i] == arr[i - 1]) {
+                continue;
+            }
+            for (int j = i + 1; j < arr.length - 2; j++) {
+                // Skip the same element to avoid duplicate quadruplets
+                if (j > i + 1 && arr[j] == arr[j - 1]) {
+                    continue;
+                }
+                searchPairs(arr, target, i, j, quads);
+            }
+        }
+        return quads;
+    }
+
+    private static void searchPairs(int[] arr, int targetSum, int first, int second, List<List<Integer>> quads) {
+        int start = second + 1;
+        int end = arr.length - 1;
+
+        while (start < end) {
+            // Note: If working with extreme inputs, use long to avoid integer overflow:
+            // long sum = (long)arr[first] + arr[second] + arr[start] + arr[end];
+            int sum = arr[first] + arr[second] + arr[start] + arr[end];
+
+            if (sum == targetSum) {
+                // Found the quadruplet
+                quads.add(Arrays.asList(arr[first], arr[second], arr[start], arr[end]));
+                start++;
+                end--;
+
+                // Skip the same elements to avoid duplicate quadruplets
+                while (start < end && arr[start] == arr[start - 1]) {
+                    start++;
+                }
+                while (start < end && arr[end] == arr[end + 1]) { // Fixed index lookback logic for 'end' pointer tracking
+                    end--;
+                }
+            } else if (sum < targetSum) {
+                // We need a pair with a bigger sum
+                start++;
+            } else {
+                // We need a pair with a smaller sum
+                end--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {4, 1, 2, -1, 1, -3};
+        System.out.println(searchQuads(arr1, 1)); 
+        // Expected Outputs: [[-3, -1, 1, 4], [-3, 1, 1, 2]]
+
+        int[] arr2 = {2, 0, -1, 1, -2, 2};
+        System.out.println(searchQuads(arr2, 2)); 
+        // Expected Outputs: [[-2, 0, 2, 2], [-1, 0, 1, 2]]
+    }
+}
+
 ```
 - Sorting the array will take `O(N*logN)`. Overall `searchQuads()` will take `O(N * logN + N³)`, which is asymptotically equivalent to `O(N³)`.
 - The <b>space complexity</b> of the above algorithm will be `O(N)` which is required for sorting.
@@ -787,6 +1341,62 @@ backspaceCompare("xywrrmp", "xywrrmu#p")//true, After applying backspaces the st
 > [!NOTE]
 > **Language:** Java
 ```java
+public class BackspaceStringCompare {
+
+    public static boolean backspaceCompare(String str1, String String2) {
+        // Use two pointer approach to compare the strings
+        int pointerOne = str1.length() - 1;
+        int pointerTwo = String2.length() - 1;
+
+        while (pointerOne >= 0 || pointerTwo >= 0) {
+            int i = getNextChar(str1, pointerOne);
+            int j = getNextChar(String2, pointerTwo);
+
+            // Reached the end of both strings
+            if (i < 0 && j < 0) {
+                return true;
+            }
+            // Reached the end of one string early
+            if (i < 0 || j < 0) {
+                return false;
+            }
+            // Check if the characters are equal
+            if (str1.charAt(i) != String2.charAt(j)) {
+                return false;
+            }
+            
+            pointerOne = i - 1;
+            pointerTwo = j - 1;
+        }
+        return true;
+    }
+
+    private static int getNextChar(String str, int index) {
+        int backspaceCount = 0;
+        while (index >= 0) {
+            if (str.charAt(index) == '#') {
+                // Found a backspace character
+                backspaceCount++;
+            } else if (backspaceCount > 0) {
+                // A non-backspace character
+                backspaceCount--;
+            } else {
+                break;
+            }
+            // Skip a backspace or valid character
+            index--;
+        }
+        return index;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(backspaceCompare("xy#z", "xzz#"));       // true
+        System.out.println(backspaceCompare("xy#z", "xyz#"));       // false
+        System.out.println(backspaceCompare("xp#", "xyz##"));       // true
+        System.out.println(backspaceCompare("xywrrmp", "xywrrmu#p")); // true
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(M+N)` where `M` and `N` are the lengths of the two input strings respectively.
 - The algorithm runs in constant space `O(1)`.
@@ -873,6 +1483,57 @@ shortestWindowSort([3,2,1])
 > [!NOTE]
 > **Language:** Java
 ```java
+public class ShortestWindowSort {
+
+    public static int shortestWindowSort(int[] arr) {
+        int low = 0;
+        int high = arr.length - 1;
+        
+        // Find the first number out of sorting order from the beginning
+        while (low < arr.length - 1 && arr[low] <= arr[low + 1]) {
+            low++;
+        }
+        
+        // If the array is already sorted
+        if (low == arr.length - 1) {
+            return 0;
+        }
+        
+        // Find the first number out of sorting order from the end
+        while (high > 0 && arr[high] >= arr[high - 1]) {
+            high--;
+        }
+        
+        // Find the max and min of the subarray
+        int subArrayMax = Integer.MIN_VALUE;
+        int subArrayMin = Integer.MAX_VALUE;
+        
+        for (int k = low; k <= high; k++) {
+            subArrayMax = Math.max(subArrayMax, arr[k]);
+            subArrayMin = Math.min(subArrayMin, arr[k]);
+        }
+        
+        // Extend the subarray to include any number which is bigger than the minimum of the subarray
+        while (low > 0 && arr[low - 1] > subArrayMin) {
+            low--;
+        }
+        
+        // Extend the subarray to include any number which is smaller than the maximum of the subarray
+        while (high < arr.length - 1 && arr[high + 1] < subArrayMax) {
+            high++;
+        }
+        
+        return high - low + 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(shortestWindowSort(new int[]{1, 2, 5, 3, 7, 10, 9, 12})); // 5
+        System.out.println(shortestWindowSort(new int[]{1, 3, 2, 0, -1, 7, 10}));    // 5
+        System.out.println(shortestWindowSort(new int[]{1, 2, 3}));                 // 0
+        System.out.println(shortestWindowSort(new int[]{3, 2, 1}));                 // 3
+    }
+}
+
 ```
 - The <b>time complexity</b> of the above algorithm will be `O(N)`.
 - The algorithm runs in constant space `O(1)`.
