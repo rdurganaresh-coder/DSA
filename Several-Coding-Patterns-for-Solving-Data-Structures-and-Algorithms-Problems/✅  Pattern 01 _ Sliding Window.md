@@ -191,7 +191,36 @@ function maxSubarrayOfSizeK(arr, k) {
 
 maxSubarrayOfSizeK(3, [2, 1, 5, 1, 3, 2])//9
 maxSubarrayOfSizeK(2, [2, 3, 4, 1, 5])//7
-````
+> [!NOTE]
+> **Language:** Java
+````java
+public class Main {
+    public static int maxSubarrayOfSizeK(int k, int[] arr) {
+        // brute force
+        int maxSum = 0;
+        int windowSum = 0;
+
+        // loop through array
+        for (int i = 0; i <= arr.length - k; i++) {
+            // keep track of sum in current window
+            windowSum = 0;
+            for (int j = i; j < i + k; j++) {
+                windowSum += arr[j];
+            }
+
+            // if currentWindowSum is > maxWindowSum
+            // set currentWindowSum to maxWindowSum
+            maxSum = Math.max(maxSum, windowSum);
+        }
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(maxSubarrayOfSizeK(3, new int[]{2, 1, 5, 1, 3, 2})); // Output: 9
+        System.out.println(maxSubarrayOfSizeK(2, new int[]{2, 3, 4, 1, 5}));    // Output: 7
+    }
+}
+
 - Time complexity will be `O(N*K)`, where `N` is the total number of elements in the given array
 
 ### Sliding Window Approach
@@ -233,6 +262,43 @@ function maxSubarrayOfSizeK(arr, k) {
 maxSubarrayOfSizeK([2, 1, 5, 1, 3, 2], 3)//9 
 maxSubarrayOfSizeK([2, 3, 4, 1, 5], 2)//7 
 ````
+> [!NOTE]
+> **Language:** JavaScript
+```java
+public class Main {
+    public static int maxSubarrayOfSizeK(int[] arr, int k) {
+        // sliding window
+        int maxSum = 0;
+        int windowSum = 0;
+        int windowStart = 0;
+
+        // loop through array
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            // add the next element
+            windowSum += arr[windowEnd];
+
+            // slide the window, we dont need to slid if we
+            // haven't hit the required window size of 'k'
+            if (windowEnd >= k - 1) {
+                maxSum = Math.max(maxSum, windowSum);
+
+                // subtract the element going out
+                windowSum -= arr[windowStart];
+
+                // slide the window ahead
+                windowStart++;
+            }
+        }
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(maxSubarrayOfSizeK(new int[]{2, 1, 5, 1, 3, 2}, 3)); // Output: 9
+        System.out.println(maxSubarrayOfSizeK(new int[]{2, 3, 4, 1, 5}, 2));    // Output: 7
+    }
+}
+
+```
 - The time complexity of the above algorithm will be `O(N)`
 - The space complexity of the above algorithm will be `O(1)`
 
@@ -292,6 +358,43 @@ smallestSubarrayWithGivenSum([2, 1, 5, 2, 8], 7)//1
 smallestSubarrayWithGivenSum([3, 4, 1, 1, 6], 8)//3
 
 ````
+> [!NOTE]
+> **Language:** JavaS
+```java
+public class Solution {
+    public static int smallestSubarrayWithGivenSum(int[] arr, int s) {
+        int windowSum = 0;
+        int minLength = Integer.MAX_VALUE;
+        int windowStart = 0;
+
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            // Add the next element
+            windowSum += arr[windowEnd];
+
+            // Shrink the window as small as possible until windowSum is smaller than s
+            while (windowSum >= s) {
+                // Check if the current window length is the smallest so far
+                minLength = Math.min(minLength, windowEnd - windowStart + 1);
+                
+                // Subtract the first element of the window to shrink it
+                windowSum -= arr[windowStart];
+                windowStart++;
+            }
+        }
+
+        // If no such subarray is found, return 0
+        return minLength == Integer.MAX_VALUE ? 0 : minLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(smallestSubarrayWithGivenSum(new int[]{2, 1, 5, 2, 3, 2}, 7)); // Output: 2
+        System.out.println(smallestSubarrayWithGivenSum(new int[]{2, 1, 5, 2, 8}, 7));    // Output: 1
+        System.out.println(smallestSubarrayWithGivenSum(new int[]{3, 4, 1, 1, 6}, 8));    // Output: 3
+    }
+}
+
+```
 - The time complexity of the above algorithm will be `O(N)`. The outer for loop runs for all elements, and the inner while loop processes each element only once; therefore, the time complexity of the algorithm will be `O(N+N)`), which is asymptotically equivalent to `O(N)`.
 - The algorithm runs in constant space `O(1)`.
 
@@ -353,6 +456,56 @@ longestSubstringWithKdistinct("araaci", 2)//4, The longest substring with no mor
 longestSubstringWithKdistinct("araaci", 1)//2, The longest substring with no more than '1' distinct characters is "aa".
 longestSubstringWithKdistinct("cbbebi", 3)//5, The longest substrings with no more than '3' distinct characters are "cbbeb" & "bbebi".
 ````
+> [!NOTE]
+> **Language:** JavaScript
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int longestSubstringWithKDistinct(String str, int k) {
+        if (str == null || str.length() == 0 || k <= 0) {
+            return 0;
+        }
+
+        int windowStart = 0;
+        int maxLength = 0;
+        Map<Character, Integer> charFrequency = new HashMap<>();
+
+        // In the following loop we'll try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+            charFrequency.put(endChar, charFrequency.getOrDefault(endChar, 0) + 1);
+
+            // Shrink the window until we are left with no more than k distinct characters 
+            // in the charFrequency HashMap
+            while (charFrequency.size() > k) {
+                char startChar = str.charAt(windowStart);
+                charFrequency.put(startChar, charFrequency.get(startChar) - 1);
+
+                // While shrinking, remove the character from the Map if its frequency becomes zero
+                if (charFrequency.get(startChar) == 0) {
+                    charFrequency.remove(startChar);
+                }
+                windowStart++;
+            }
+
+            // After each step we will check if the current window length is the longest so far
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(longestSubstringWithKDistinct("araaci", 2)); // Output: 4 ("araa")
+        System.out.println(longestSubstringWithKDistinct("araaci", 1)); // Output: 2 ("aa")
+        System.out.println(longestSubstringWithKDistinct("cbbebi", 3)); // Output: 5 ("cbbeb" or "bbebi")
+    }
+}
+
+```
 - The above algorithms time complexity will be `O(N)`, where `N` is the number of characters in the input string. The outer for loop runs for all characters, and the inner while loop processes each character only once; therefore, the time complexity of the algorithm will be `O(N+N)`, which is asymptotically equivalent to `O(N)`
 - The algorithms space complexity is `O(K)`, as we will be storing a maximum of `K+1` characters in the <b>HashMap</b>.
 
@@ -370,6 +523,7 @@ This problem follows the <b>Sliding Window pattern</b> and is quite similar to <
 In this problem, we need to find the length of the longest subarray with no more than two distinct characters (or fruit types!). 
 
 This transforms the current problem into Longest Substring with <b>K Distinct Characters</b> where `K=2`.
+
 > [!NOTE]
 > **Language:** JavaScript
 ### Map Class Solution
@@ -419,6 +573,53 @@ totalFruit ([1,2,3,2,2])
 //4,We can pick from trees [2,3,2,2]. If we had started at the first tree, we would only pick from trees [1,2].
 ````
 > [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int totalFruit(int[] fruits) {
+        int windowStart = 0;
+        int windowMax = 0;
+        Map<Integer, Integer> fruitMap = new HashMap<>();
+
+        // 1. Try to extend the window range
+        for (int windowEnd = 0; windowEnd < fruits.length; windowEnd++) {
+            int endFruit = fruits[windowEnd];
+            
+            // Replaces: fruitMap.set(endFruit, fruitMap.get(endFruit)+1 || 1)
+            fruitMap.put(endFruit, fruitMap.getOrDefault(endFruit, 0) + 1);
+
+            // 2. Shrink the sliding window, until we are left with 2 fruits in the fruitMap
+            while (fruitMap.size() > 2) {
+                int startFruit = fruits[windowStart];
+                
+                fruitMap.put(startFruit, fruitMap.get(startFruit) - 1);
+
+                if (fruitMap.get(startFruit) == 0) {
+                    fruitMap.remove(startFruit);
+                }
+                windowStart++;
+            }
+
+            windowMax = Math.max(windowMax, windowEnd - windowStart + 1);
+        }
+
+        return windowMax;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(totalFruit(new int[]{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4})); // Output: 5
+        System.out.println(totalFruit(new int[]{1, 2, 1}));                         // Output: 3
+        System.out.println(totalFruit(new int[]{0, 1, 2, 2}));                      // Output: 3
+        System.out.println(totalFruit(new int[]{1, 2, 3, 2, 2}));                   // Output: 4
+    }
+}
+
+```
+> [!NOTE]
 > **Language:** JavaScript
 ### Map Object Solution
 ````js
@@ -452,6 +653,52 @@ function fruitsInBaskets(fruits) {
 fruitsInBaskets(['A', 'B', 'C', 'A', 'C'])//3 , We can put 2 'C' in one basket and one 'A' in the other from the subarray ['C', 'A', 'C']
 fruitsInBaskets(['A', 'B', 'C', 'B', 'B', 'C'])//5 , We can put 3 'B' in one basket and two 'C' in the other basket. This can be done if we start with the second letter: ['B', 'C', 'B', 'B', 'C']
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int fruitsInBaskets(char[] fruits) {
+        if (fruits == null || fruits.length == 0) {
+            return 0;
+        }
+
+        int windowStart = 0;
+        int maxLength = 0;
+        Map<Character, Integer> fruitFrequency = new HashMap<>();
+
+        // Try to extend the range
+        for (int windowEnd = 0; windowEnd < fruits.length; windowEnd++) {
+            char endFruit = fruits[windowEnd];
+            fruitFrequency.put(endFruit, fruitFrequency.getOrDefault(endFruit, 0) + 1);
+
+            // Shrink the sliding window until we are left with '2' distinct fruits in the frequency map
+            while (fruitFrequency.size() > 2) {
+                char startFruit = fruits[windowStart];
+                fruitFrequency.put(startFruit, fruitFrequency.get(startFruit) - 1);
+
+                if (fruitFrequency.get(startFruit) == 0) {
+                    fruitFrequency.remove(startFruit);
+                }
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(fruitsInBaskets(new char[]{'A', 'B', 'C', 'A', 'C'}));       // Output: 3
+        System.out.println(fruitsInBaskets(new char[]{'A', 'B', 'C', 'B', 'B', 'C'})); // Output: 5
+    }
+}
+
+```
 - The above algorithms time complexity will be `O(N)`, where `N` is the number of characters in the input array. The outer `for` loop runs for all characters, and the inner `while` loop processes each character only once; therefore, the time complexity of the algorithm will be `O(N+N)`, which is asymptotically equivalent to `O(N)`.
 - The algorithm runs in constant space `O(1)` as there can be a maximum of three types of fruits stored in the frequency map.
 ### Longest Substring with at most 2 distinct characters
@@ -495,9 +742,51 @@ function lengthOfLongestSubstringTwoDistinct(s) {
 lengthOfLongestSubstringTwoDistinct('eceba')//3
 lengthOfLongestSubstringTwoDistinct('ccaabbb')//5
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
 
+public class Solution {
+    public static int lengthOfLongestSubstringTwoDistinct(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
 
+        int windowStart = 0;
+        int maxLength = 0;
+        Map<Character, Integer> charFreq = new HashMap<>();
 
+        // Try to extend the range
+        for (int windowEnd = 0; windowEnd < s.length(); windowEnd++) {
+            char endChar = s.charAt(windowEnd);
+            charFreq.put(endChar, charFreq.getOrDefault(endChar, 0) + 1);
+
+            // Shrink the sliding window, until we are left with 2 chars in charFreq hashMap
+            while (charFreq.size() > 2) {
+                char startChar = s.charAt(windowStart);
+                charFreq.put(startChar, charFreq.get(startChar) - 1);
+
+                if (charFreq.get(startChar) == 0) {
+                    charFreq.remove(startChar);
+                }
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(lengthOfLongestSubstringTwoDistinct("eceba"));   // Output: 3 ("ece")
+        System.out.println(lengthOfLongestSubstringTwoDistinct("ccaabbb")); // Output: 5 ("aabbb")
+    }
+}
+```
 
 ## No-repeat Substring (hard)
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
@@ -546,6 +835,54 @@ nonRepeatSubstring("aabccbb")//3
 nonRepeatSubstring("abbbb")//2
 nonRepeatSubstring("abccde")//3
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int nonRepeatSubstring(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+
+        int windowStart = 0;
+        int maxLength = 0;
+        // Map to store the last seen index of each character
+        Map<Character, Integer> charIndexMap = new HashMap<>();
+
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+
+            // If the map already contains the endChar, shrink the window from the beginning 
+            // so that we only have one occurrence of endChar
+            if (charIndexMap.containsKey(endChar)) {
+                // This is tricky; in the current window, we will not have any endChar after
+                // its previous index. And if windowStart is already ahead of the last index of
+                // endChar, we'll keep windowStart.
+                windowStart = Math.max(windowStart, charIndexMap.get(endChar) + 1);
+            }
+
+            // Insert/update the position of the endChar into the map
+            charIndexMap.put(endChar, windowEnd);
+
+            // Remember the maximum length so far
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(nonRepeatSubstring("aabccbb")); // Output: 3 ("abc")
+        System.out.println(nonRepeatSubstring("abbbb"));   // Output: 2 ("ab")
+        System.out.println(nonRepeatSubstring("abccde"));   // Output: 3 ("abc" or "cde")
+    }
+}
+```
 - The above algorithms time complexity will be `O(N)`, where `N` is the number of characters in the input string.
 - The algorithms space complexity will be `O(K)`, where `K` is the number of distinct characters in the input string. This also means `K<=N`, because in the worst case, the whole string might not have any repeating character, so the entire string will be added to the <b>HashMap</b>. Having said that, since we can expect a fixed set of characters in the input string (e.g., 26 for English letters), we can say that the algorithm runs in fixed space `O(1)`; in this case, we can use a fixed-size array instead of the <b>HashMap</b>.
 
@@ -601,6 +938,55 @@ lengthOfLongestSubstring("aabccbb", 2)//5, Replace the two 'c' with 'b' to have 
 lengthOfLongestSubstring("abbcb", 1)//4, Replace the 'c' with 'b' to have a longest repeating substring "bbbb".
 lengthOfLongestSubstring("abccde", 1)//3, Replace the 'b' or 'd' with 'c' to have the longest repeating substring "ccc".
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int lengthOfLongestSubstring(String str, int k) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+
+        int windowStart = 0;
+        int maxLength = 0;
+        int maxRepeatLetterCount = 0;
+        Map<Character, Integer> charFrequency = new HashMap<>();
+
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+            charFrequency.put(endChar, charFrequency.getOrDefault(endChar, 0) + 1);
+            
+            // Track the count of the most frequent letter seen so far in any window
+            maxRepeatLetterCount = Math.max(maxRepeatLetterCount, charFrequency.get(endChar));
+
+            // Current window size is from windowStart to windowEnd. 
+            // The number of remaining letters we need to replace is: (window size - maxRepeatLetterCount).
+            // If remaining letters are more than k, shrink the window from the left.
+            if ((windowEnd - windowStart + 1 - maxRepeatLetterCount) > k) {
+                char startChar = str.charAt(windowStart);
+                charFrequency.put(startChar, charFrequency.get(startChar) - 1);
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(lengthOfLongestSubstring("aabccbb", 2)); // Output: 5
+        System.out.println(lengthOfLongestSubstring("abbcb", 1));   // Output: 4
+        System.out.println(lengthOfLongestSubstring("abccde", 1));   // Output: 3
+    }
+}
+
+```
 
 - The above algorithms time complexity will be `O(N)`, where `N` is the number of letters in the input string.
 - As we expect only the lower case letters in the input string, we can conclude that the space complexity will be `O(26)` to store each letters frequency in the <b>HashMap</b>, which is asymptotically equal to `O(1)`.
@@ -650,6 +1036,51 @@ function lengthOfLongestSubstring (arr, k) {
 lengthOfLongestSubstring ([0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1], 2)//6, Replace the '0' at index 5 and 8 to have the longest contiguous subarray of `1`'s having length 6.
 lengthOfLongestSubstring ([0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1], 3)//9, Replace the '0' at index 6, 9, and 10 to have the longest contiguous subarray of `1`'s having length 9.
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+public class Solution {
+    public static int lengthOfLongestSubstring(int[] arr, int k) {
+        if (arr == null || arr.length == 0) {
+            return 0;
+        }
+
+        int windowStart = 0;
+        int maxLength = 0;
+        int maxOnesCount = 0;
+
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+            if (arr[windowEnd] == 1) {
+                maxOnesCount++;
+            }
+
+            // Current window size is from windowStart to windowEnd. Overall we have a 
+            // maximum of `1`'s repeating maxOnesCount times, this means we can have a window 
+            // with maxOnesCount `1`'s and the remaining are `0`'s which we should replace with `1`s.
+            // Now, if the remaining `0`s are more than k, it is time to shrink the 
+            // window as we are not allowed to replace more than k `0`s.
+            if ((windowEnd - windowStart + 1 - maxOnesCount) > k) {
+                if (arr[windowStart] == 1) {
+                    maxOnesCount--;
+                }
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(lengthOfLongestSubstring(new int[]{0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1}, 2));    // Output: 6
+        System.out.println(lengthOfLongestSubstring(new int[]{0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1}, 3)); // Output: 9
+    }
+}
+
+```
 - The above algorithms time complexity will be `O(N)`, where `N` is the count of numbers in the input array.
 - The algorithm runs in constant space `O(1)`.
 
@@ -727,7 +1158,72 @@ findPermutation("odicf", "dc")//false
 findPermutation("bcdxabcdy", "bcdxabcdy")//true
 findPermutation("aaacb", "abc")//true, The string contains "acb" which is a permutation of the given pattern.
 ````
+> [!NOTE]
+> **Language:** Java
+````java
+import java.util.HashMap;
+import java.util.Map;
 
+public class Solution {
+    public static boolean findPermutation(String str, String pattern) {
+        if (str == null || pattern == null || str.length() < pattern.length()) {
+            return false;
+        }
+
+        int windowStart = 0;
+        int isMatch = 0;
+        Map<Character, Integer> charFrequency = new HashMap<>();
+
+        // Populate the character frequency map for the pattern
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            charFrequency.put(c, charFrequency.getOrDefault(c, 0) + 1);
+        }
+
+        // Our goal is to match all the characters from charFrequency with the current window
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+            
+            if (charFrequency.containsKey(endChar)) {
+                // Decrement the frequency of the matched character
+                charFrequency.put(endChar, charFrequency.get(endChar) - 1);
+                if (charFrequency.get(endChar) == 0) {
+                    isMatch++;
+                }
+            }
+
+            if (isMatch == charFrequency.size()) {
+                return true;
+            }
+
+            // Shrink the sliding window
+            if (windowEnd >= pattern.length() - 1) {
+                char startChar = str.charAt(windowStart);
+                windowStart++;
+                
+                if (charFrequency.containsKey(startChar)) {
+                    if (charFrequency.get(startChar) == 0) {
+                        isMatch--;
+                    }
+                    charFrequency.put(startChar, charFrequency.get(startChar) + 1);
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(findPermutation("oidbcaf", "abc"));       // Output: true
+        System.out.println(findPermutation("odicf", "dc"));         // Output: false
+        System.out.println(findPermutation("bcdxabcdy", "bcdxabcdy")); // Output: true
+        System.out.println(findPermutation("aaacb", "abc"));         // Output: true
+    }
+}
+
+```
 - The above algorithms time complexity will be `O(N + M)`, where `N` and `M` are the number of characters in the input string and the pattern, respectively.
 - The algorithms space complexity is `O(M)` since, in the worst case, the whole pattern can have distinct characters that will go into the <b>HashMap</b>.
 
@@ -751,8 +1247,10 @@ As we know, when we are not allowed to repeat characters while finding permutati
 This problem follows the <b>Sliding Window pattern</b> and is very similar to <b>Permutation in a String</b>. In this problem, we need to find every occurrence of any permutation of the pattern in the string. We will use a list to store the starting indices of the anagrams of the pattern in the string.
 
 > [!NOTE]
+>
 > **Language:** JavaScript
-````js
+
+```js
 function findStringAnagrams(str, pattern){
   let windowStart = 0, matched = 0, charFreq = {}
   
@@ -805,7 +1303,77 @@ function findStringAnagrams(str, pattern){
 findStringAnagrams('ppqp', 'pq')//[1,2], The two anagrams of the pattern in the given string are "pq" and "qp".
 findStringAnagrams('abbcabc', 'abc')//[2,3,4], The three anagrams of the pattern in the given string are "bca", "cab", and "abc".
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+public class Solution {
+    public static List<Integer> findStringAnagrams(String str, String pattern) {
+        List<Integer> resultIndices = new ArrayList<>();
+        if (str == null || pattern == null || str.length() < pattern.length()) {
+            return resultIndices;
+        }
+
+        int windowStart = 0;
+        int matched = 0;
+        Map<Character, Integer> charFreq = new HashMap<>();
+
+        // Populate the character frequency map for the pattern
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            charFreq.put(c, charFreq.getOrDefault(c, 0) + 1);
+        }
+
+        // Our goal is to match all the characters from charFreq with the current window
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+            
+            if (charFreq.containsKey(endChar)) {
+                // Decrement the frequency of the matched character
+                charFreq.put(endChar, charFreq.get(endChar) - 1);
+                if (charFreq.get(endChar) == 0) {
+                    matched++;
+                }
+            }
+
+            // Have we found an anagram?
+            if (matched == charFreq.size()) {
+                resultIndices.add(windowStart);
+            }
+
+            // Shrink the sliding window
+            if (windowEnd >= pattern.length() - 1) {
+                char startChar = str.charAt(windowStart);
+                windowStart++;
+                
+                // FIXED BUG: Checking startChar instead of endChar
+                if (charFreq.containsKey(startChar)) {
+                    if (charFreq.get(startChar) == 0) {
+                        // Before putting the character back, decrement the matched count
+                        matched--;
+                    }
+                    // Put the character back
+                    charFreq.put(startChar, charFreq.get(startChar) + 1);
+                }
+            }
+        }
+
+        return resultIndices;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(findStringAnagrams("ppqp", "pq"));       // Output: [1, 2]
+        System.out.println(findStringAnagrams("abbcabc", "abc"));   // Output: [2, 3, 4]
+    }
+}
+
+```
 - The time complexity of the above algorithm will be `O(N + M)` where `N` and `M` are the number of characters in the input string and the pattern respectively.
 - The space complexity of the algorithm is `O(M)` since in the worst case, the whole pattern can have distinct characters which will go into the <b>HashMap</b>. In the worst case, we also need `O(N)` space for the result list, this will happen when the pattern has only one character and the string contains only that character.
 
@@ -877,7 +1445,74 @@ findSubstring("aabdec", "abc")//"abdec", The smallest substring having all chara
 findSubstring("abdbca", "abc")//"bca", The smallest substring having all characters of the pattern is "bca".
 findSubstring("adcad", "abc")//"", No substring in the given string has all characters of the pattern.
 ````
+> [!NOTE]
+> **Language:** Java
+```java
+import java.util.HashMap;
+import java.util.Map;
 
+public class Solution {
+    public static String findSubstring(String str, String pattern) {
+        if (str == null || pattern == null || str.length() < pattern.length()) {
+            return "";
+        }
+
+        int windowStart = 0;
+        int matched = 0;
+        int substrStart = 0;
+        int minLength = str.length() + 1;
+        Map<Character, Integer> charFreq = new HashMap<>();
+
+        // Populate pattern frequency map
+        for (int i = 0; i < pattern.length(); i++) {
+            char c = pattern.charAt(i);
+            charFreq.put(c, charFreq.getOrDefault(c, 0) + 1);
+        }
+
+        // Try to extend the range [windowStart, windowEnd]
+        for (int windowEnd = 0; windowEnd < str.length(); windowEnd++) {
+            char endChar = str.charAt(windowEnd);
+            if (charFreq.containsKey(endChar)) {
+                charFreq.put(endChar, charFreq.get(endChar) - 1);
+                if (charFreq.get(endChar) >= 0) {
+                    // Count every matching instance of a character
+                    matched++;
+                }
+            }
+
+            // Shrink the window if we can, finish as soon as we remove a matched character
+            while (matched == pattern.length()) {
+                if (minLength > windowEnd - windowStart + 1) {
+                    minLength = windowEnd - windowStart + 1;
+                    substrStart = windowStart;
+                }
+
+                char startChar = str.charAt(windowStart);
+                windowStart++;
+                if (charFreq.containsKey(startChar)) {
+                    if (charFreq.get(startChar) == 0) {
+                        matched--;
+                    }
+                    charFreq.put(startChar, charFreq.get(startChar) + 1);
+                }
+            }
+        }
+
+        if (minLength > str.length()) {
+            return "";
+        }
+        return str.substring(substrStart, substrStart + minLength);
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println("\"" + findSubstring("aabdec", "abc") + "\""); // Output: "abdec"
+        System.out.println("\"" + findSubstring("abdbca", "abc") + "\""); // Output: "bca"
+        System.out.println("\"" + findSubstring("adcad", "abc") + "\"");   // Output: ""
+    }
+}
+
+```
 - The time complexity of the above algorithm will be `O(N + M)` where `N` and `M` are the number of characters in the input string and the pattern respectively.
 - The space complexity of the algorithm is `O(M)` since in the worst case, the whole pattern can have distinct characters which will go into the <b>HashMap</b>. In the worst case, we also need `O(N)` space for the resulting substring, which will happen when the input string is a permutation of the pattern.
 ## 🌟 Words Concatenation (hard)
@@ -947,6 +1582,68 @@ function findWordConcatenation(str, words) {
 
 findWordConcatenation("catfoxcat", ["cat", "fox"])//[0, 3], The two substring containing both the words are "catfox" & "foxcat".
 findWordConcatenation("catcatfoxfox", ["cat", "fox"])//[3], The only substring containing both the words is "catfox".
+````
+> [!NOTE]
+> **Language:** Java
+````java
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+    public static List<Integer> findWordConcatenation(String str, String[] words) {
+        List<Integer> resultIndex = new ArrayList<>();
+        if (str == null || words == null || words.length == 0 || words[0].length() == 0) {
+            return resultIndex;
+        }
+
+        Map<String, Integer> wordFreq = new HashMap<>();
+        for (String word : words) {
+            wordFreq.put(word, wordFreq.getOrDefault(word, 0) + 1);
+        }
+
+        int wordCount = words.length;
+        int wordLength = words[0].length();
+        int totalLength = wordCount * wordLength;
+
+        for (int i = 0; i <= str.length() - totalLength; i++) {
+            Map<String, Integer> wordsSeen = new HashMap<>();
+            
+            for (int j = 0; j < wordCount; j++) {
+                int nextWordIndex = i + j * wordLength;
+                // Get the next word from the string
+                String word = str.substring(nextWordIndex, nextWordIndex + wordLength);
+                
+                if (!wordFreq.containsKey(word)) {
+                    // Break if we don't need this word
+                    break;
+                }
+
+                // Add the word to the wordsSeen map
+                wordsSeen.put(word, wordsSeen.getOrDefault(word, 0) + 1);
+
+                // No need to process further if the word has higher frequency than required
+                if (wordsSeen.get(word) > wordFreq.getOrDefault(word, 0)) {
+                    break;
+                }
+
+                if (j + 1 == wordCount) {
+                    // Store index if we have found all the words
+                    resultIndex.add(i);
+                }
+            }
+        }
+        return resultIndex;
+    }
+
+    public static void main(String[] args) {
+        // Test cases
+        System.out.println(findWordConcatenation("catfoxcat", new String[]{"cat", "fox"}));       // Output: [0, 3]
+        System.out.println(findWordConcatenation("catcatfoxfox", new String[]{"cat", "fox"}));   // Output: [3]
+    }
+}
+
 ````
 - The time complexity of the above algorithm will be `O(N * M * Len)` where `N` is the number of characters in the given string, `M` is the total number of `words`, and `Len` is the length of a word.
 - The space complexity of the algorithm is `O(M)` since at most, we will be storing all the `words` in the two <b>HashMaps</b>. In the worst case, we also need `O(N)` space for the resulting list. So, the overall space complexity of the algorithm will be `O(M+N)`.
