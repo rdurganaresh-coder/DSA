@@ -70,8 +70,7 @@ The template above can be slightly tweaked and modified to solve the following p
 
 | LeetCode # | Problem Name | Source Code |
 | :--- | :--- | :--- |
-| **30** | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
- | [Code](../../DSA_Problems/src/main/java/com/durga/leetcode/Sliding_Window/SubstringWithConcatenationOfAllWords.java)|
+| **30** | [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)|[Code](../../DSA_Problems/src/main/java/com/durga/leetcode/Sliding_Window/SubstringWithConcatenationOfAllWords.java) |
 | **187** | Repeated DNA Sequences | |
 | **438** | Find All Anagrams in a String | |
 | **567** | Permutation in String | |
