@@ -1,4 +1,4 @@
-package com.durga.utils.random;
+package com.durga.leetcode.utils.random;
 
 @SuppressWarnings("java:S1104")
 public class Node {

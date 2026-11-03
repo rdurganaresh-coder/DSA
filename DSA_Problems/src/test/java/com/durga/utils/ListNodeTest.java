@@ -3,6 +3,7 @@ package com.durga.utils;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import com.durga.leetcode.utils.ListNode;
 import org.junit.jupiter.api.Test;
 
 class ListNodeTest {

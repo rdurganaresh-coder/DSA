@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import com.durga.leetcode.utils.NestedInteger;
 import org.junit.jupiter.api.Test;
 
 class NestedIntegerTest {

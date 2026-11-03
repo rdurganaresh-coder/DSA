@@ -1,4 +1,4 @@
-package com.durga.utils;
+package com.durga.leetcode.utils;
 
 import java.util.ArrayList;
 import java.util.List;

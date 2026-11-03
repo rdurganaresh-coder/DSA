@@ -1,4 +1,4 @@
-package com.durga.utils.left_right;
+package com.durga.leetcode.utils.left_right;
 
 @SuppressWarnings("java:S1104")
 public class Node {

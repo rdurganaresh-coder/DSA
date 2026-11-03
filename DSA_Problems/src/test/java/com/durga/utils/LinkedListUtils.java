@@ -1,5 +1,7 @@
 package com.durga.utils;
 
+import com.durga.leetcode.utils.ListNode;
+
 import java.util.List;
 
 public class LinkedListUtils {

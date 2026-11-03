@@ -4,6 +4,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Collections;
+
+import com.durga.leetcode.utils.Node;
 import org.junit.jupiter.api.Test;
 
 class NodeTest {
