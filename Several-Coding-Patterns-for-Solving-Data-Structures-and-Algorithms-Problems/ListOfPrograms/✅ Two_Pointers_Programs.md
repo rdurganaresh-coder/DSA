@@ -7,6 +7,7 @@ I have spent the last 3.5 months solving all two pointer tagged problems (117 pu
 ## 1. Running from Both Ends of an Array
 This pattern involves placing one pointer at the left end and another at the right end of the array, then moving them toward the center while processing elements.
 
+
 ![Running from Both Ends Diagram](image_j5QXC-.png)
 
 | Category | Problem Name | Link | Starred (`*`) | Status |
