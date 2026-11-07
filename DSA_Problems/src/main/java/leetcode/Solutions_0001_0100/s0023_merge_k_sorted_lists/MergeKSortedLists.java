@@ -1,10 +1,10 @@
-package g0001_0100.s0023_merge_k_sorted_lists;
+package leetcode.Solutions_0001_0100.s0023_merge_k_sorted_lists;
 
 // #Hard #Top_100_Liked_Questions #Top_Interview_Questions #Heap_Priority_Queue #Linked_List
 // #Divide_and_Conquer #Merge_Sort #Top_Interview_150_Divide_and_Conquer
 // #Big_O_Time_O(k*n*log(k))_Space_O(log(k)) #2024_11_10_Time_1_ms_(99.86%)_Space_44.1_MB_(79.93%)
 
-import com_github_leetcode.ListNode;
+import leetcode.utils.ListNode;
 
 /*
  * Definition for singly-linked list.
@@ -16,7 +16,7 @@ import com_github_leetcode.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-public class Solution {
+public class MergeKSortedLists {
     public ListNode mergeKLists(ListNode[] lists) {
         if (lists.length == 0) {
             return null;

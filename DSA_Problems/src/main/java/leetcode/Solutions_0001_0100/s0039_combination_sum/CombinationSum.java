@@ -1,4 +1,4 @@
-package g0001_0100.s0039_combination_sum;
+package leetcode.Solutions_0001_0100.s0039_combination_sum;
 
 // #Medium #Top_100_Liked_Questions #Array #Backtracking #Algorithm_II_Day_10_Recursion_Backtracking
 // #Level_2_Day_20_Brute_Force/Backtracking #Udemy_Backtracking/Recursion
@@ -8,7 +8,7 @@ package g0001_0100.s0039_combination_sum;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class CombinationSum {
     public List<List<Integer>> combinationSum(int[] coins, int amount) {
         List<List<Integer>> ans = new ArrayList<>();
         List<Integer> subList = new ArrayList<>();

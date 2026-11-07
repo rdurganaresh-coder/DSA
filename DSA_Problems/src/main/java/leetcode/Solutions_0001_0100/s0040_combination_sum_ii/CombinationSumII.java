@@ -1,4 +1,4 @@
-package g0001_0100.s0040_combination_sum_ii;
+package leetcode.Solutions_0001_0100.s0040_combination_sum_ii;
 
 // #Medium #Array #Backtracking #Algorithm_II_Day_10_Recursion_Backtracking
 // #2023_08_09_Time_2_ms_(99.75%)_Space_43.9_MB_(10.59%)
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Solution {
+public class CombinationSumII {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> sums = new ArrayList<>();
         // optimize

@@ -1,4 +1,4 @@
-package g0001_0100.s0030_substring_with_concatenation_of_all_words;
+package leetcode.Solutions_0001_0100.s0030_substring_with_concatenation_of_all_words;
 
 // #Hard #String #Hash_Table #Sliding_Window #Top_Interview_150_Sliding_Window
 // #2025_03_04_Time_11_ms_(97.43%)_Space_45.96_MB_(24.38%)
@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Solution {
+public class SubstringWithConcatenationOfAllWords {
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> ans = new ArrayList<>();
         int n1 = words[0].length();

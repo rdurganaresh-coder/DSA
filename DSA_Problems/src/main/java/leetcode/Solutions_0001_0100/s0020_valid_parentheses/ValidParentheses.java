@@ -1,4 +1,4 @@
-package g0001_0100.s0020_valid_parentheses;
+package leetcode.Solutions_0001_0100.s0020_valid_parentheses;
 
 // #Easy #Top_100_Liked_Questions #Top_Interview_Questions #String #Stack
 // #Data_Structure_I_Day_9_Stack_Queue #Udemy_Strings #Top_Interview_150_Stack
@@ -7,7 +7,7 @@ package g0001_0100.s0020_valid_parentheses;
 import java.util.Stack;
 
 @SuppressWarnings("java:S1149")
-public class Solution {
+public class ValidParentheses {
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {

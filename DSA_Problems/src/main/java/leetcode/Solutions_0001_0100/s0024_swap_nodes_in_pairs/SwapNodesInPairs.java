@@ -1,10 +1,10 @@
-package g0001_0100.s0024_swap_nodes_in_pairs;
+package leetcode.Solutions_0001_0100.s0024_swap_nodes_in_pairs;
 
 // #Medium #Top_100_Liked_Questions #Linked_List #Recursion #Data_Structure_II_Day_12_Linked_List
 // #Udemy_Linked_List #Big_O_Time_O(n)_Space_O(1)
 // #2024_11_10_Time_0_ms_(100.00%)_Space_41.4_MB_(20.29%)
 
-import com_github_leetcode.ListNode;
+import leetcode.utils.ListNode;
 
 /*
  * Definition for singly-linked list.
@@ -16,7 +16,7 @@ import com_github_leetcode.ListNode;
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-public class Solution {
+public class SwapNodesInPairs {
     public ListNode swapPairs(ListNode head) {
         if (head == null) {
             return null;

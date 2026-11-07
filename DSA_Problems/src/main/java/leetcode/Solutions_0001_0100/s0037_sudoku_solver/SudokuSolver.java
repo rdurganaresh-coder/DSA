@@ -1,11 +1,11 @@
-package g0001_0100.s0037_sudoku_solver;
+package leetcode.Solutions_0001_0100.s0037_sudoku_solver;
 
 // #Hard #Array #Matrix #Backtracking #2023_08_09_Time_2_ms_(99.55%)_Space_40.4_MB_(20.80%)
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Solution {
+public class SudokuSolver {
     private List<int[]> emptyCells = new ArrayList<>();
     private int[] rows = new int[9];
     private int[] cols = new int[9];
