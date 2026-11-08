@@ -1,4 +1,4 @@
-package com.durga.leetcode.Arrays.Easy.Longest_Common_Prefix;
+package leetcode.Solutions_0001_0100.s0014_longest_common_prefix;
 
 public class LongestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {

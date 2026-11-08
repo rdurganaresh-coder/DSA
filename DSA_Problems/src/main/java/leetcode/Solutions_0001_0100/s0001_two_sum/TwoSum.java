@@ -1,4 +1,4 @@
-package com.durga.leetcode.Arrays.Easy.Two_sum;
+package leetcode.Solutions_0001_0100.s0001_two_sum;
 
 import java.util.HashMap;
 import java.util.Map;
