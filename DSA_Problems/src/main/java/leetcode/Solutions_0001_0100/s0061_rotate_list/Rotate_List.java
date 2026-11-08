@@ -46,4 +46,58 @@ public class Rotate_List {
         }
         return newHead;
     }
+
+    private static ListNode createList(int[] values) {
+        if (values.length == 0) return null;
+        ListNode head = new ListNode(values[0]);
+        ListNode current = head;
+        for (int i = 1; i < values.length; i++) {
+            current.next = new ListNode(values[i]);
+            current = current.next;
+        }
+        return head;
+    }
+
+    private static void printList(ListNode head) {
+        ListNode current = head;
+        System.out.print("[");
+        while (current != null) {
+            System.out.print(current.val);
+            if (current.next != null) {
+                System.out.print(" -> ");
+            }
+            current = current.next;
+        }
+        System.out.println("]");
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1: Standard list with k smaller than count
+        ListNode list1 = createList(new int[]{1, 2, 3, 4, 5});
+        ListNode result1 = new Rotate_List().rotateRight(list1, 2);
+        System.out.print("Test 1 Result (k = 2): ");
+        printList(result1);
+        // Expected Output: [4 -> 5 -> 1 -> 2 -> 3]
+
+        // Test Case 2: List with k larger than list size (k % count handles this)
+        ListNode list2 = createList(new int[]{0, 1, 2});
+        ListNode result2 = new Rotate_List().rotateRight(list2, 4);
+        System.out.print("Test 2 Result (k = 4): ");
+        printList(result2);
+        // Expected Output: [2 -> 0 -> 1]
+
+        // Test Case 3: Empty list edge case
+        ListNode list3 = createList(new int[]{});
+        ListNode result3 = new Rotate_List().rotateRight(list3, 5);
+        System.out.print("Test 3 Result (Empty): ");
+        printList(result3);
+        // Expected Output: []
+
+        // Test Case 4: k is an exact multiple of the list length (Should return original list)
+        ListNode list4 = createList(new int[]{1, 2});
+        ListNode result4 = new Rotate_List().rotateRight(list4, 2);
+        System.out.print("Test 4 Result (k = length): ");
+        printList(result4);
+        // Expected Output: [1 -> 2]
+    }
 }

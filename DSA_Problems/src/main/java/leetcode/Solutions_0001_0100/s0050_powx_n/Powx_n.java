@@ -24,4 +24,12 @@ public class Powx_n {
         }
         return res;
     }
+
+    public static void main(String[] args) {
+        double result1 = new Powx_n().myPow(2.00000, 10);
+        System.out.println(result1);
+
+        double result2 = new Powx_n().myPow(2.10000, 3);
+        System.out.println(result2);
+    }
 }

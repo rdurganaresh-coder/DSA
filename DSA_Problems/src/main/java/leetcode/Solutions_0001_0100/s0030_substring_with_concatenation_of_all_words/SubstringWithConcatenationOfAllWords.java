@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SubstringWithConcatenationOfAllWords {
-    public List<Integer> findSubstring(String s, String[] words) {
+    public static List<Integer> findSubstring(String s, String[] words) {
         List<Integer> ans = new ArrayList<>();
         int n1 = words[0].length();
         int n2 = s.length();
@@ -46,5 +46,11 @@ public class SubstringWithConcatenationOfAllWords {
         }
 
         return ans;
+    }
+
+    public static void main(String[] args) {
+        String s = "barfoothefoobarman";
+        String[] words = {"foo", "bar"};
+        System.out.println(findSubstring(s, words)); // Output: [0, 9]
     }
 }

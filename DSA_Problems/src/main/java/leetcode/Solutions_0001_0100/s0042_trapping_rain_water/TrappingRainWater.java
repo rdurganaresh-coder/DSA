@@ -1,4 +1,8 @@
-package leetcode.Solutions_0001_0100.s0042_trapping_rain_water;;
+package leetcode.Solutions_0001_0100.s0042_trapping_rain_water;
+
+import java.util.Arrays;
+
+;
 
 // #Hard #Top_100_Liked_Questions #Top_Interview_Questions #Array #Dynamic_Programming #Two_Pointers
 // #Stack #Monotonic_Stack #Dynamic_Programming_I_Day_9 #Udemy_Two_Pointers
@@ -35,5 +39,34 @@ public class TrappingRainWater {
             }
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        TrappingRainWater solver = new TrappingRainWater();
+
+        // Test Case 1: Standard LeetCode Example 1
+        int[] height1 = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        System.out.println("Input: " + Arrays.toString(height1) + 
+                           " -> Trapped Water: " + solver.trap(height1) + " (Expected: 6)");
+
+        // Test Case 2: Standard LeetCode Example 2 (Steep walls)
+        int[] height2 = {4, 2, 0, 3, 2, 5};
+        System.out.println("Input: " + Arrays.toString(height2) + 
+                           " -> Trapped Water: " + solver.trap(height2) + " (Expected: 9)");
+
+        // Test Case 3: Empty / Flat Terrain
+        int[] height3 = {0, 0, 0, 0};
+        System.out.println("Input: " + Arrays.toString(height3) + 
+                           " -> Trapped Water: " + solver.trap(height3) + " (Expected: 0)");
+
+        // Test Case 4: No elevation drop to trap water (Descending structure)
+        int[] height4 = {3, 2, 1, 0};
+        System.out.println("Input: " + Arrays.toString(height4) + 
+                           " -> Trapped Water: " + solver.trap(height4) + " (Expected: 0)");
+
+        // Test Case 5: Single large pit in the middle
+        int[] height5 = {3, 0, 3};
+        System.out.println("Input: " + Arrays.toString(height5) + 
+                           " -> Trapped Water: " + solver.trap(height5) + " (Expected: 3)");
     }
 }

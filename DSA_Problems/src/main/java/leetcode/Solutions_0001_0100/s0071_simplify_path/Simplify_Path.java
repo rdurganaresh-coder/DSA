@@ -35,4 +35,31 @@ public class Simplify_Path {
         }
         return !ans.isEmpty() ? ans.toString() : "/";
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Path with redundant trailing slashes
+    String result1 = new Simplify_Path().simplifyPath("/home//foo/");
+    System.out.println("Test 1 Result: " + result1);
+    // Expected Output: "/home/foo"
+
+    // Test Case 2: Path containing relative up-directory operators ".."
+    String result2 = new Simplify_Path().simplifyPath("/home/user/Documents/../Downloads/");
+    System.out.println("Test 2 Result: " + result2);
+    // Expected Output: "/home/user/Downloads"
+
+    // Test Case 3: Going out-of-bounds above the root directory
+    String result3 = new Simplify_Path().simplifyPath("/../");
+    System.out.println("Test 3 Result: " + result3);
+    // Expected Output: "/"
+
+    // Test Case 4: Path containing current-directory operators "."
+    String result4 = new Simplify_Path().simplifyPath("/home/./foo/bar/.");
+    System.out.println("Test 4 Result: " + result4);
+    // Expected Output: "/home/foo/bar"
+
+    // Test Case 5: Path where periods are part of a valid file name
+    String result5 = new Simplify_Path().simplifyPath("/.../a/../b/c/../d/./");
+    System.out.println("Test 5 Result: " + result5);
+    // Expected Output: "/.../b/d"
+}
 }

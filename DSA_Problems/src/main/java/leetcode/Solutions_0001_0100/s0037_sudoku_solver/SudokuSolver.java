@@ -63,4 +63,40 @@ public class SudokuSolver {
     private boolean hasBit(int x, int k) {
         return (x >> k & 1) == 1;
     }
+
+    private static void printBoard(char[][] board) {
+        for (int r = 0; r < 9; r++) {
+            for (int c = 0; c < 9; c++) {
+                System.out.print(board[r][c] + " ");
+                if ((c + 1) % 3 == 0 && c < 8) System.out.print("| ");
+            }
+            System.out.println();
+            if ((r + 1) % 3 == 0 && r < 8) {
+                System.out.println("---------------------");
+            }
+        }
+    }
+    public static void main(String[] args) {
+        char[][] board = {
+            {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+            {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+            {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+            {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+            {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+            {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+            {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+            {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+            {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+
+        System.out.println("--- Original Sudoku Puzzle ---");
+        printBoard(board);
+        System.out.println();
+
+        SudokuSolver solver = new SudokuSolver();
+        solver.solveSudoku(board);
+
+        System.out.println("--- Solved Sudoku Grid ---");
+        printBoard(board);
+    }
 }

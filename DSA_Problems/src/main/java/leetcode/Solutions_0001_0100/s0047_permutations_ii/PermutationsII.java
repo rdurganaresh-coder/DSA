@@ -4,6 +4,7 @@ package leetcode.Solutions_0001_0100.s0047_permutations_ii;
 // #2023_08_11_Time_1_ms_(99.86%)_Space_44.4_MB_(45.65%)
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PermutationsII {
@@ -40,5 +41,34 @@ public class PermutationsII {
         int t = nums[i];
         nums[i] = nums[j];
         nums[j] = t;
+    }
+
+    public static void main(String[] args) {
+        PermutationsII solver = new PermutationsII();
+
+        // Test Case 1: Standard LeetCode Example (Contains duplicates)
+        int[] nums1 = {1, 1, 2};
+        List<List<Integer>> result1 = solver.permuteUnique(nums1);
+        System.out.println("Test Case 1 Input: " + Arrays.toString(nums1));
+        System.out.println("Output Unique Permutations (" + result1.size() + "):");
+        result1.forEach(System.out::println);
+        System.out.println("Expected Unique Configurations: [,,]");
+        System.out.println();
+
+        // Test Case 2: Array with unique elements
+        int[] nums2 = {1, 2, 3};
+        List<List<Integer>> result2 = solver.permuteUnique(nums2);
+        System.out.println("Test Case 2 Input: " + Arrays.toString(nums2));
+        System.out.println("Output Unique Permutations (" + result2.size() + "):");
+        result2.forEach(System.out::println);
+        System.out.println();
+
+        // Test Case 3: All elements are identical duplicates
+        int[] nums3 = {2, 2, 2};
+        List<List<Integer>> result3 = solver.permuteUnique(nums3);
+        System.out.println("Test Case 3 Input: " + Arrays.toString(nums3));
+        System.out.println("Output Unique Permutations (" + result3.size() + "):");
+        result3.forEach(System.out::println);
+        System.out.println("Expected Unique Configurations: []");
     }
 }

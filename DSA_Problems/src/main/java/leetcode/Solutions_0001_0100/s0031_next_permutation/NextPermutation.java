@@ -4,7 +4,7 @@ package leetcode.Solutions_0001_0100.s0031_next_permutation;
 // #2024_11_10_Time_0_ms_(100.00%)_Space_43_MB_(39.33%)
 
 public class NextPermutation {
-    public void nextPermutation(int[] nums) {
+    public static void nextPermutation(int[] nums) {
         if (nums == null || nums.length <= 1) {
             return;
         }
@@ -22,15 +22,24 @@ public class NextPermutation {
         reverse(nums, i + 1, nums.length - 1);
     }
 
-    private void swap(int[] nums, int i, int j) {
+    private static void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
     }
 
-    private void reverse(int[] nums, int i, int j) {
+    private static void reverse(int[] nums, int i, int j) {
         while (i < j) {
             swap(nums, i++, j--);
         }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3};
+        nextPermutation(nums);
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
+        // Output: 1 3 2
     }
 }

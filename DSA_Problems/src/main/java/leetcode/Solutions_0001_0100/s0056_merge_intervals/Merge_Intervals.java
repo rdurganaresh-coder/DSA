@@ -25,4 +25,30 @@ public class Merge_Intervals {
         }
         return list.toArray(new int[list.size()][]);
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard overlapping intervals
+    int[][] intervals1 = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+    int[][] result1 = new Merge_Intervals().merge(intervals1);
+    System.out.println("Test 1 Result: " + Arrays.deepToString(result1));
+    // Expected Output: [[1, 6], [8, 10], [15, 18]]
+
+    // Test Case 2: Consecutive touching intervals (end matches next start)
+    int[][] intervals2 = {{1, 4}, {4, 5}};
+    int[][] result2 = new Merge_Intervals().merge(intervals2);
+    System.out.println("Test 2 Result: " + Arrays.deepToString(result2));
+    // Expected Output: [[1, 5]]
+
+    // Test Case 3: Completely absorbed/nested intervals
+    int[][] intervals3 = {{1, 4}, {2, 3}};
+    int[][] result3 = new Merge_Intervals().merge(intervals3);
+    System.out.println("Test 3 Result: " + Arrays.deepToString(result3));
+    // Expected Output: [[1, 4]]
+
+    // Test Case 4: Unsorted input intervals
+    int[][] intervals4 = {{5, 8}, {1, 3}, {2, 4}};
+    int[][] result4 = new Merge_Intervals().merge(intervals4);
+    System.out.println("Test 4 Result: " + Arrays.deepToString(result4));
+    // Expected Output: [[1, 4], [5, 8]]
+}
 }

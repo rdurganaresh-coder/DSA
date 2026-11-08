@@ -4,7 +4,7 @@ package leetcode.Solutions_0001_0100.s0029_divide_two_integers;
 // #2023_08_09_Time_1_ms_(97.44%)_Space_39.5_MB_(92.14%)
 
 public class DivideTwoIntegers {
-    public int divide(int dividend, int divisor) {
+    public static int divide(int dividend, int divisor) {
         boolean isNegative = dividend > 0 && divisor < 0 || dividend < 0 && divisor > 0;
         long ans = 0;
         long divide = Math.abs((long) dividend);
@@ -28,5 +28,11 @@ public class DivideTwoIntegers {
             ans = intMax;
         }
         return (int) ans;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(divide(10, 3)); // Output: 3
+        System.out.println(divide(7, -3)); // Output: -2
+        System.out.println(divide(-2147483648, -1)); // Output: 2147483647
     }
 }

@@ -6,6 +6,7 @@ package leetcode.Solutions_0001_0100.s0046_permutations;
 // #2024_11_10_Time_1_ms_(94.08%)_Space_45.1_MB_(6.84%)
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Permutations {
@@ -34,5 +35,32 @@ public class Permutations {
             used[i] = false;
             currResult.remove(currResult.size() - 1);
         }
+    }
+
+    public static void main(String[] args) {
+        Permutations solver = new Permutations();
+
+        // Test Case 1: Standard LeetCode Example 1 (3 unique elements)
+        int[] nums1 = {1, 2, 3};
+        List<List<Integer>> result1 = solver.permute(nums1);
+        System.out.println("Test Case 1 Input: " + Arrays.toString(nums1));
+        System.out.println("Output (" + result1.size() + " permutations):");
+        result1.forEach(System.out::println);
+        System.out.println();
+
+        // Test Case 2: Standard LeetCode Example 2 (2 elements)
+        int[] nums2 = {0, 1};
+        List<List<Integer>> result2 = solver.permute(nums2);
+        System.out.println("Test Case 2 Input: " + Arrays.toString(nums2));
+        System.out.println("Output (" + result2.size() + " permutations):");
+        result2.forEach(System.out::println);
+        System.out.println();
+
+        // Test Case 3: Single Element Edge Case
+        int[] nums3 = {1};
+        List<List<Integer>> result3 = solver.permute(nums3);
+        System.out.println("Test Case 3 Input: " + Arrays.toString(nums3));
+        System.out.println("Output (" + result3.size() + " permutations):");
+        result3.forEach(System.out::println);
     }
 }

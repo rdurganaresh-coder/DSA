@@ -25,4 +25,28 @@ public class Climbing_Stairs {
         }
         return cache[n - 1];
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Minimum standard input (n = 1)
+    int result1 = new Climbing_Stairs().climbStairs(1);
+    System.out.println("Test 1 (n = 1): " + result1);
+    // Expected Output: 1
+
+    // Test Case 2: Standard small input (n = 2)
+    // Ways: [1+1, 2]
+    int result2 = new Climbing_Stairs().climbStairs(2);
+    System.out.println("Test 2 (n = 2): " + result2);
+    // Expected Output: 2
+
+    // Test Case 3: Standard medium input (n = 3)
+    // Ways: [1+1+1, 1+2, 2+1]
+    int result3 = new Climbing_Stairs().climbStairs(3);
+    System.out.println("Test 3 (n = 3): " + result3);
+    // Expected Output: 3
+
+    // Test Case 4: Larger input tracking standard Fibonacci scale (n = 5)
+    int result4 = new Climbing_Stairs().climbStairs(5);
+    System.out.println("Test 4 (n = 5): " + result4);
+    // Expected Output: 8
+}
 }

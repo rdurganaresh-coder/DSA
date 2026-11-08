@@ -37,4 +37,42 @@ public class Unique_Paths_ii {
         }
         return obstacleGrid[m - 1][n - 1];
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard grid with a central obstacle
+    int[][] grid1 = {
+        {0, 0, 0},
+        {0, 1, 0},
+        {0, 0, 0}
+    };
+    int result1 = new Unique_Paths_ii().uniquePathsWithObstacles(grid1);
+    System.out.println("Test 1 Result: " + result1);
+    // Expected Output: 2
+
+    // Test Case 2: Obstacle blocking the starting cell
+    int[][] grid2 = {
+        {1, 0},
+        {0, 0}
+    };
+    int result2 = new Unique_Paths_ii().uniquePathsWithObstacles(grid2);
+    System.out.println("Test 2 Result: " + result2);
+    // Expected Output: 0
+
+    // Test Case 3: Obstacle blocking an entire border edge row/column
+    int[][] grid3 = {
+        {0, 1},
+        {0, 0}
+    };
+    int result3 = new Unique_Paths_ii().uniquePathsWithObstacles(grid3);
+    System.out.println("Test 3 Result: " + result3);
+    // Expected Output: 1
+
+    // Test Case 4: Minimal single-cell grid without obstacle
+    int[][] grid4 = {
+        {0}
+    };
+    int result4 = new Unique_Paths_ii().uniquePathsWithObstacles(grid4);
+    System.out.println("Test 4 Result: " + result4);
+    // Expected Output: 1
+}
 }

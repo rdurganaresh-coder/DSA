@@ -32,4 +32,37 @@ public class CombinationSum {
         }
         combinationSumRec(n - 1, coins, amount, subList, ans);
     }
+
+    public static void main(String[] args) {
+        CombinationSum solver = new CombinationSum();
+
+        // Test Case 1: Standard LeetCode Example 1
+        int[] candidates1 = {2, 3, 6, 7};
+        int target1 = 7;
+        List<List<Integer>> result1 = solver.combinationSum(candidates1, target1);
+        System.out.println("Test Case 1 Candidates:, Target: 7");
+        System.out.print("Output: ");
+        result1.forEach(System.out::println);
+        System.out.println("Expected: [[7], [3, 2, 2]] (Order may vary depending on recursion)");
+        System.out.println();
+
+        // Test Case 2: Standard LeetCode Example 2
+        int[] candidates2 = {2, 3, 5};
+        int target2 = 8;
+        List<List<Integer>> result2 = solver.combinationSum(candidates2, target2);
+        System.out.println("Test Case 2 Candidates:, Target: 8");
+        System.out.print("Output: ");
+        result2.forEach(System.out::println);
+        System.out.println("Expected: [[5, 3], [3, 3, 2], [2, 2, 2, 2]]");
+        System.out.println();
+
+        // Test Case 3: Target cannot be formed
+        int[] candidates3 = {2};
+        int target3 = 1;
+        List<List<Integer>> result3 = solver.combinationSum(candidates3, target3);
+        System.out.println("Test Case 3 Candidates:, Target: 1");
+        System.out.print("Output: ");
+        result3.forEach(System.out::println);
+        System.out.println("Expected: [] (Empty list)");
+    }
 }

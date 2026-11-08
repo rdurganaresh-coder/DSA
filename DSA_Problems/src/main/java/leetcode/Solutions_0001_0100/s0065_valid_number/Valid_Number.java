@@ -35,4 +35,29 @@ public class Valid_Number {
         }
         return numberSeen;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Valid integers and decimals (Should all output true)
+    System.out.println("Test 1a (2): " + new Valid_Number().isNumber("2"));
+    System.out.println("Test 1b (0.1): " + new Valid_Number().isNumber("0.1"));
+    System.out.println("Test 1c (-90E3): " + new Valid_Number().isNumber("-90E3"));
+    System.out.println("Test 1d (+6e-1): " + new Valid_Number().isNumber("+6e-1"));
+    System.out.println("Test 1e (53.5e93): " + new Valid_Number().isNumber("53.5e93"));
+    System.out.println("Test 1f (-.3): " + new Valid_Number().isNumber("-.3"));
+    System.out.println();
+
+    // Test Case 2: Invalid patterns (Should all output false)
+    System.out.println("Test 2a (abc): " + new Valid_Number().isNumber("abc"));
+    System.out.println("Test 2b (1a): " + new Valid_Number().isNumber("1a"));
+    System.out.println("Test 2c (1e): " + new Valid_Number().isNumber("1e"));
+    System.out.println("Test 2d (e3): " + new Valid_Number().isNumber("e3"));
+    System.out.println("Test 2e (99e2.5): " + new Valid_Number().isNumber("99e2.5"));
+    System.out.println("Test 2f (--6): " + new Valid_Number().isNumber("--6"));
+    System.out.println("Test 2g (-+3): " + new Valid_Number().isNumber("-+3"));
+    System.out.println("Test 2h (95a54e53): " + new Valid_Number().isNumber("95a54e53"));
+    System.out.println();
+
+    // Test Case 3: Tricky valid cases ending with a decimal point (e.g., "3.")
+    System.out.println("Test 3 (3.): " + new Valid_Number().isNumber("3."));
+}
 }

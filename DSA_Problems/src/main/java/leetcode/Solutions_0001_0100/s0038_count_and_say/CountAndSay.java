@@ -21,4 +21,28 @@ public class CountAndSay {
         res.append(count).append(prev.charAt(prev.length() - 1));
         return res.toString();
     }
+
+    public static void main(String[] args) {
+        CountAndSay solver = new CountAndSay();
+
+        // Test Case 1: Base Case
+        int n1 = 1;
+        System.out.println("n = " + n1 + " -> Output: \"" + solver.countAndSay(n1) + "\" (Expected: \"1\")");
+
+        // Test Case 2: Iteration 2
+        int n2 = 2;
+        System.out.println("n = " + n2 + " -> Output: \"" + solver.countAndSay(n2) + "\" (Expected: \"11\")");
+
+        // Test Case 3: Iteration 3
+        int n3 = 3;
+        System.out.println("n = " + n3 + " -> Output: \"" + solver.countAndSay(n3) + "\" (Expected: \"21\")");
+
+        // Test Case 4: Iteration 4 (Standard LeetCode Example)
+        int n4 = 4;
+        System.out.println("n = " + n4 + " -> Output: \"" + solver.countAndSay(n4) + "\" (Expected: \"1211\")");
+
+        // Test Case 5: Higher Iteration
+        int n5 = 5;
+        System.out.println("n = " + n5 + " -> Output: \"" + solver.countAndSay(n5) + "\" (Expected: \"111221\")");
+    }
 }

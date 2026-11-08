@@ -41,4 +41,32 @@ public class WildcardMatching {
         }
         return isMatch;
     }
+
+    public static void main(String[] args) {
+        WildcardMatching solver = new WildcardMatching();
+
+        // Test Case 1: Simple mismatch
+        String s1 = "aa", p1 = "a";
+        System.out.println("s = \"" + s1 + "\", p = \"" + p1 + "\" -> Result: " + solver.isMatch(s1, p1) + " (Expected: false)");
+
+        // Test Case 2: Universal match with *
+        String s2 = "aa", p2 = "*";
+        System.out.println("s = \"" + s2 + "\", p = \"" + p2 + "\" -> Result: " + solver.isMatch(s2, p2) + " (Expected: true)");
+
+        // Test Case 3: Single character match with ?
+        String s3 = "cb", p3 = "?a";
+        System.out.println("s = \"" + s3 + "\", p = \"" + p3 + "\" -> Result: " + solver.isMatch(s3, p3) + " (Expected: false)");
+
+        // Test Case 4: Multiple wildcards combined
+        String s4 = "adceb", p4 = "*a*b";
+        System.out.println("s = \"" + s4 + "\", p = \"" + p4 + "\" -> Result: " + solver.isMatch(s4, p4) + " (Expected: true)");
+
+        // Test Case 5: Empty string matching pattern with multiple stars
+        String s5 = "", p5 = "***";
+        System.out.println("s = \"" + s5 + "\", p = \"" + p5 + "\" -> Result: " + solver.isMatch(s5, p5) + " (Expected: true)");
+
+        // Test Case 6: Empty pattern mismatching non-empty string
+        String s6 = "abc", p6 = "";
+        System.out.println("s = \"" + s6 + "\", p = \"" + p6 + "\" -> Result: " + solver.isMatch(s6, p6) + " (Expected: false)");
+    }
 }

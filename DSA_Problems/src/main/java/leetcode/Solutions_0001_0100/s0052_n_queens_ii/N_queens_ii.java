@@ -32,4 +32,26 @@ public class N_queens_ii {
         }
         return count;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: N = 1 (Should output 1)
+    int result1 = new N_queens_ii().totalNQueens(1);
+    System.out.println("N = 1 -> Total Solutions: " + result1);
+
+    // Test Case 2: N = 2 (Should output 0)
+    int result2 = new N_queens_ii().totalNQueens(2);
+    System.out.println("N = 2 -> Total Solutions: " + result2);
+
+    // Test Case 3: N = 3 (Should output 0)
+    int result3 = new N_queens_ii().totalNQueens(3);
+    System.out.println("N = 3 -> Total Solutions: " + result3);
+
+    // Test Case 4: N = 4 (Should output 2)
+    int result4 = new N_queens_ii().totalNQueens(4);
+    System.out.println("N = 4 -> Total Solutions: " + result4);
+
+    // Test Case 5: N = 8 (Should output 92)
+    int result5 = new N_queens_ii().totalNQueens(8);
+    System.out.println("N = 8 -> Total Solutions: " + result5);
+}
 }

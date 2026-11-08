@@ -21,4 +21,26 @@ public class Jump_Game {
         }
         return fin == 0;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard reachable array (Should output true)
+    int[] nums1 = {2, 3, 1, 1, 4};
+    boolean result1 = new Jump_Game().canJump(nums1);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Trap array with a 0 block (Should output false)
+    int[] nums2 = {3, 2, 1, 0, 4};
+    boolean result2 = new Jump_Game().canJump(nums2);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: Single element array edge case (Should output true)
+    int[] nums3 = {0};
+    boolean result3 = new Jump_Game().canJump(nums3);
+    System.out.println("Test 3 Result: " + result3);
+
+    // Test Case 4: Array starting with 0 but multiple elements (Should output false)
+    int[] nums4 = {0, 2, 3};
+    boolean result4 = new Jump_Game().canJump(nums4);
+    System.out.println("Test 4 Result: " + result4);
+}
 }

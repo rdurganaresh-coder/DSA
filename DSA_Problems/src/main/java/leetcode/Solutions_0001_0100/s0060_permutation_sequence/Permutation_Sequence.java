@@ -29,4 +29,27 @@ public class Permutation_Sequence {
         }
         return String.valueOf(res);
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard small input (n = 3, k = 3)
+    // Permutations: "123", "132", "213", "231", "312", "321"
+    String result1 = new Permutation_Sequence().getPermutation(3, 3);
+    System.out.println("Test 1 Result: " + result1);
+    // Expected Output: "213"
+
+    // Test Case 2: Another standard input (n = 4, k = 9)
+    String result2 = new Permutation_Sequence().getPermutation(4, 9);
+    System.out.println("Test 2 Result: " + result2);
+    // Expected Output: "2314"
+
+    // Test Case 3: Minimum base case (n = 1, k = 1)
+    String result3 = new Permutation_Sequence().getPermutation(1, 1);
+    System.out.println("Test 3 Result: " + result3);
+    // Expected Output: "1"
+
+    // Test Case 4: The very last permutation sequence (n = 3, k = 6)
+    String result4 = new Permutation_Sequence().getPermutation(3, 6);
+    System.out.println("Test 4 Result: " + result4);
+    // Expected Output: "321"
+}
 }

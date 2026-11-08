@@ -24,4 +24,47 @@ public class RotateImage {
             }
         }
     }
+
+    private static void printMatrix(int[][] matrix) {
+        for (int[] row : matrix) {
+            for (int val : row) {
+                System.out.print(val + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        RotateImage solver = new RotateImage();
+
+        // Test Case 1: Standard 3x3 Matrix
+        int[][] matrix1 = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        System.out.println("--- Test Case 1: Original 3x3 ---");
+        printMatrix(matrix1);
+        
+        solver.rotate(matrix1);
+        
+        System.out.println("\n--- Test Case 1: Rotated 90 Degrees ---");
+        printMatrix(matrix1);
+        System.out.println();
+
+        // Test Case 2: Standard 4x4 Matrix
+        int[][] matrix2 = {
+            {5, 1, 9, 11},
+            {2, 4, 8, 10},
+            {13, 3, 6, 7},
+            {15, 14, 12, 16}
+        };
+        System.out.println("--- Test Case 2: Original 4x4 ---");
+        printMatrix(matrix2);
+        
+        solver.rotate(matrix2);
+        
+        System.out.println("\n--- Test Case 2: Rotated 90 Degrees ---");
+        printMatrix(matrix2);
+    }
 }

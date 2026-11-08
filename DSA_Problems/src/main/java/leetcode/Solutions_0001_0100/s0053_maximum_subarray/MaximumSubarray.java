@@ -20,4 +20,26 @@ public class MaximumSubarray {
         }
         return maxi;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard mixed array (Should output 6 from [.4, -1, 2, 1])
+    int[] nums1 = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    int result1 = new MaximumSubarray().maxSubArray(nums1);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Single element array (Should output 1)
+    int[] nums2 = {1};
+    int result2 = new MaximumSubarray().maxSubArray(nums2);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: All positive numbers (Should output 23 by adding all elements)
+    int[] nums3 = {5, 4, -1, 7, 8};
+    int result3 = new MaximumSubarray().maxSubArray(nums3);
+    System.out.println("Test 3 Result: " + result3);
+
+    // Test Case 4: All negative numbers (Should output -1, the largest single element)
+    int[] nums4 = {-5, -4, -1, -7, -8};
+    int result4 = new MaximumSubarray().maxSubArray(nums4);
+    System.out.println("Test 4 Result: " + result4);
+ }
 }

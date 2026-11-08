@@ -58,4 +58,28 @@ public class N_queens {
         }
         return res;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: N = 1 (Should output [[Q]])
+    List<List<String>> result1 = new N_queens().solveNQueens(1);
+    System.out.println("N = 1 solution count: " + result1.size());
+    System.out.println(result1);
+    System.out.println();
+
+    // Test Case 2: N = 2 (Should output [] because it's impossible)
+    List<List<String>> result2 = new N_queens().solveNQueens(2);
+    System.out.println("N = 2 solution count: " + result2.size());
+    System.out.println(result2);
+    System.out.println();
+
+    // Test Case 3: N = 4 (Should output 2 distinct solution board layouts)
+    List<List<String>> result3 = new N_queens().solveNQueens(4);
+    System.out.println("N = 4 solution count: " + result3.size());
+    System.out.println(result3);
+    System.out.println();
+
+    // Test Case 4: N = 8 (Verifying the count for the classic 8-Queens problem)
+    List<List<String>> result4 = new N_queens().solveNQueens(8);
+    System.out.println("N = 8 solution count: " + result4.size());
+}
 }

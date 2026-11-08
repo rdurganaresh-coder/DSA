@@ -78,4 +78,38 @@ public class Text_Justification {
         output.add(sb.toString());
         return output;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard text justification with mixed word lengths
+    String[] words1 = {"This", "is", "an", "example", "of", "text", "justification."};
+    int maxWidth1 = 16;
+    List<String> result1 = new Text_Justification().fullJustify(words1, maxWidth1);
+    System.out.println("--- Test 1 Result (maxWidth = 16) ---");
+    for (String line : result1) {
+        System.out.println("\"" + line + "\"");
+    }
+    System.out.println();
+
+    // Test Case 2: Greedy approach leaving spaces distributed to the left side
+    String[] words2 = {"What", "must", "be", "acknowledgment", "shall", "be"};
+    int maxWidth2 = 16;
+    List<String> result2 = new Text_Justification().fullJustify(words2, maxWidth2);
+    System.out.println("--- Test 2 Result (maxWidth = 16) ---");
+    for (String line : result2) {
+        System.out.println("\"" + line + "\"");
+    }
+    System.out.println();
+
+    // Test Case 3: Long sentence with varied line packing and left-justified final line
+    String[] words3 = {
+        "Science", "is", "knowledge", "which", "improves", "the", "reputation", "of", "the", 
+        "human", "mind", "in", "the", "literate", "world."
+    };
+    int maxWidth3 = 20;
+    List<String> result3 = new Text_Justification().fullJustify(words3, maxWidth3);
+    System.out.println("--- Test 3 Result (maxWidth = 20) ---");
+    for (String line : result3) {
+        System.out.println("\"" + line + "\"");
+    }
+}
 }

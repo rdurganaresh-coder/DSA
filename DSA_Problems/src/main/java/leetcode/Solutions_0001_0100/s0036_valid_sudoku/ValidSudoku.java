@@ -4,11 +4,11 @@ package leetcode.Solutions_0001_0100.s0036_valid_sudoku;
 // #Top_Interview_150_Matrix #2025_03_04_Time_1_ms_(100.00%)_Space_44.50_MB_(57.83%)
 
 public class ValidSudoku {
-    private int j1;
-    private int[] i1 = new int[9];
-    private int[] b1 = new int[9];
+    private static int j1;
+    private static int[] i1 = new int[9];
+    private static int[] b1 = new int[9];
 
-    public boolean isValidSudoku(char[][] board) {
+    public static boolean isValidSudoku(char[][] board) {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 boolean res = checkValid(board, i, j);
@@ -20,7 +20,7 @@ public class ValidSudoku {
         return true;
     }
 
-    private boolean checkValid(char[][] board, int i, int j) {
+    private static boolean checkValid(char[][] board, int i, int j) {
         if (j == 0) {
             j1 = 0;
         }
@@ -42,5 +42,35 @@ public class ValidSudoku {
         }
         b1[b] |= 1 << (val - 1);
         return true;
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1: A completely Valid Sudoku Board
+        char[][] validBoard = {
+            {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+            {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+            {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+            {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+            {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+            {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+            {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+            {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+            {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        System.out.println("Test Case 1 (Valid Board)    -> Result: " + isValidSudoku(validBoard) + " (Expected: true)");
+
+        // Test Case 2: Invalid Sudoku Board (Duplicate '8' in the first column/top-left 3x3 box)
+        char[][] invalidBoard = {
+            {'8', '3', '.', '.', '7', '.', '.', '.', '.'},
+            {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+            {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+            {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+            {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+            {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+            {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+            {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+            {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        System.out.println("Test Case 2 (Invalid Board)  -> Result: " + isValidSudoku(invalidBoard) + " (Expected: false)");
     }
 }

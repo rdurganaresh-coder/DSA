@@ -29,4 +29,43 @@ public class Minimum_Path_Sum {
         }
         return dm[r][c];
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard multi-row, multi-column grid
+    // Path: 1 -> 3 -> 1 -> 1 -> 1 = 7
+    int[][] grid1 = {
+        {1, 3, 1},
+        {1, 5, 1},
+        {4, 2, 1}
+    };
+    int result1 = new Minimum_Path_Sum().minPathSum(grid1);
+    System.out.println("Test 1 Result: " + result1);
+    // Expected Output: 7
+
+    // Test Case 2: Standard small rectangular grid
+    // Path: 1 -> 2 -> 3 = 6
+    int[][] grid2 = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+    int result2 = new Minimum_Path_Sum().minPathSum(grid2);
+    System.out.println("Test 2 Result: " + result2);
+    // Expected Output: 6
+
+    // Test Case 3: Single cell base case matrix
+    int[][] grid3 = {
+        {5}
+    };
+    int result3 = new Minimum_Path_Sum().minPathSum(grid3);
+    System.out.println("Test 3 Result: " + result3);
+    // Expected Output: 5
+
+    // Test Case 4: Single row vector array
+    int[][] grid4 = {
+        {1, 2, 3, 4}
+    };
+    int result4 = new Minimum_Path_Sum().minPathSum(grid4);
+    System.out.println("Test 4 Result: " + result4);
+    // Expected Output: 10
+}
 }
