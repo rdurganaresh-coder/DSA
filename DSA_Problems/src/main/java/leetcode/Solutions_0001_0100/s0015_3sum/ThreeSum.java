@@ -11,7 +11,7 @@ import java.util.List;
 
 @SuppressWarnings("java:S127")
 public class ThreeSum {
-    public List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         final int len = nums.length;
         List<List<Integer>> result = new ArrayList<>();
@@ -47,5 +47,16 @@ public class ThreeSum {
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        List<List<Integer>> result1 = threeSum(new int[] {-1, 0, 1, 2, -1, -4});
+        System.out.println(result1);
+
+        List<List<Integer>> result2 = threeSum(new int[] {});
+        System.out.println(result2);
+
+        List<List<Integer>> result3 = threeSum(new int[] {0});
+        System.out.println(result3);    
     }
 }

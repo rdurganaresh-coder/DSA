@@ -1,5 +1,7 @@
 package leetcode.Solutions_0001_0100.s0025_reverse_nodes_in_k_group;
 
+import leetcode.utils.LinkedListUtils;
+
 // #Hard #Top_100_Liked_Questions #Linked_List #Recursion #Data_Structure_II_Day_13_Linked_List
 // #Udemy_Linked_List #Top_Interview_150_Linked_List #Big_O_Time_O(n)_Space_O(k)
 // #2024_11_10_Time_0_ms_(100.00%)_Space_44.4_MB_(33.90%)
@@ -17,7 +19,7 @@ import leetcode.utils.ListNode;
  * }
  */
 public class ReverseNodesInKGroup {
-    public ListNode reverseKGroup(ListNode head, int k) {
+    public static ListNode reverseKGroup(ListNode head, int k) {
         if (head == null || head.next == null || k == 1) {
             return head;
         }
@@ -50,5 +52,13 @@ public class ReverseNodesInKGroup {
         // recursion, for futher remaining linked list.
         head.next = reverseKGroup(n, k);
         return prev;
+    }
+
+    public static void main(String[] args) {
+        ListNode head1 = LinkedListUtils.contructLinkedList(new int[] {1, 2, 3, 4, 5});
+        System.out.println("Reversed K-Groups: " + reverseKGroup(head1, 2).toString());
+
+        ListNode head2 = LinkedListUtils.contructLinkedList(new int[] {1, 2, 3, 4, 5});
+        System.out.println("Reversed K-Groups: " + reverseKGroup(head2, 3).toString());
     }
 }

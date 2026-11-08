@@ -4,7 +4,7 @@ package leetcode.Solutions_0001_0100.s0013_roman_to_integer;
 // #Big_O_Time_O(n)_Space_O(1) #2025_03_04_Time_2_ms_(100.00%)_Space_44.54_MB_(91.65%)
 
 public class RomanToInteger {
-    public int romanToInt(String s) {
+    public static int romanToInt(String s) {
         int x = 0;
         char y;
         for (int i = 0; i < s.length(); i++) {
@@ -38,7 +38,7 @@ public class RomanToInteger {
         return x;
     }
 
-    private int getX(String s, int x, int i, int i2, char v, char x2) {
+    private static int getX(String s, int x, int i, int i2, char v, char x2) {
         if (i + 1 == s.length()) {
             x += i2;
         } else if (s.charAt(i + 1) == v) {
@@ -49,5 +49,14 @@ public class RomanToInteger {
             x += i2;
         }
         return x;
+    }
+
+    public static void main(String[] args) {
+        int result1 = romanToInt("III");
+        System.out.println(result1);
+        int result2 = romanToInt("LVIII");
+        System.out.println(result2);
+        int result3 = romanToInt("MCMXCIV");
+        System.out.println(result3);
     }
 }

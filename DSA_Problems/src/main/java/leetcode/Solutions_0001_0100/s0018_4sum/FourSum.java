@@ -8,7 +8,7 @@ import java.util.List;
 
 @SuppressWarnings("java:S135")
 public class FourSum {
-    public List<List<Integer>> fourSum(int[] nums, int target) {
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
         int n = nums.length;
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
@@ -62,4 +62,17 @@ public class FourSum {
         }
         return result;
     }
+
+    public static void main(String[] args) {
+        List<List<Integer>> result = fourSum(new int[]{1, 0, -1, 0, -2, 2}, 0);
+        for (List<Integer> list : result) {
+            System.out.println(list);   
+        }
+
+      List<List<Integer>> result2 = fourSum(new int[]{2, 2, 2, 2, 2}, 8);
+        result2.forEach(list -> System.out.println(list));
+
+      List<List<Integer>> result3 = fourSum(new int[] {1000000000, 1000000000}, 8);
+        result3.forEach(list -> System.out.println(list));  
+  }
 }

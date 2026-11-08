@@ -6,7 +6,7 @@ package leetcode.Solutions_0001_0100.s0004_median_of_two_sorted_arrays;
 
 @SuppressWarnings("java:S2234")
 public class MedianOfTwoSortedArrays {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         if (nums2.length < nums1.length) {
             return findMedianSortedArrays(nums2, nums1);
         }
@@ -35,5 +35,15 @@ public class MedianOfTwoSortedArrays {
             }
         }
         return 0.0f;
+    }
+
+    public static void main(String[] args) {
+        double result1 = findMedianSortedArrays(new int[] {1, 3}, new int[] {2});
+        System.out.println("Median of the two sorted arrays: " + result1);
+        double result2 = findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4});
+        System.out.println("Median of the two sorted arrays: " + result2);
+        double result3 = findMedianSortedArrays(new int[] {0, 0}, new int[] {0, 0});
+        System.out.println("Median of the two sorted arrays: " + result3);
+        
     }
 }

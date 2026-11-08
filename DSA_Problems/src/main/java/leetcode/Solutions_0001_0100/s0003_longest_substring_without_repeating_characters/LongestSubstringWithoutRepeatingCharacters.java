@@ -31,4 +31,19 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
         return maxLen;
     }
+
+    public static void main(String[] args) {
+        LongestSubstringWithoutRepeatingCharacters solution = new LongestSubstringWithoutRepeatingCharacters();
+        String input1 = "abcabcbb";
+        String input2 = "bbbbb";
+        String input3 = "pwwkew";
+        int result1 = solution.lengthOfLongestSubstring(input1);
+        System.out.println("Length of the longest substring without repeating characters: " + result1);
+        int result2 = solution.lengthOfLongestSubstring(input2);
+        System.out.println("Length of the longest substring without repeating characters: " + result2);
+        int result3 = solution.lengthOfLongestSubstring(input3);
+        System.out.println("Length of the longest substring without repeating characters: " + result3);
+
+
+    }
 }

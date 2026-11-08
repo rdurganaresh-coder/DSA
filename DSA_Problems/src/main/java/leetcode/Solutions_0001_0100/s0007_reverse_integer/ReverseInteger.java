@@ -15,4 +15,17 @@ public class ReverseInteger {
         }
         return (int) rev;
     }
+
+    public static void main(String[] args) {
+        ReverseInteger solution = new ReverseInteger();
+        int x = 123;
+        int reversed = solution.reverse(x);
+        System.out.println("Reversed integer: " + reversed); // Output: 321
+        int y = -456;
+        int reversedY = solution.reverse(y);
+        System.out.println("Reversed integer: " + reversedY); // Output: -654
+        int z = 1534236469; // This will overflow when reversed
+        int reversedZ = solution.reverse(z);
+        System.out.println("Reversed integer: " + reversedZ); // Output: 0 (overflow case)        
+    }
 }

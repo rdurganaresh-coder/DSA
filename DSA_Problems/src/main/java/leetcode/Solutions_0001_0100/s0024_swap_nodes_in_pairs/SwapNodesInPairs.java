@@ -1,5 +1,9 @@
 package leetcode.Solutions_0001_0100.s0024_swap_nodes_in_pairs;
 
+import java.util.Arrays;
+
+import leetcode.utils.LinkedListUtils;
+
 // #Medium #Top_100_Liked_Questions #Linked_List #Recursion #Data_Structure_II_Day_12_Linked_List
 // #Udemy_Linked_List #Big_O_Time_O(n)_Space_O(1)
 // #2024_11_10_Time_0_ms_(100.00%)_Space_41.4_MB_(20.29%)
@@ -17,7 +21,7 @@ import leetcode.utils.ListNode;
  * }
  */
 public class SwapNodesInPairs {
-    public ListNode swapPairs(ListNode head) {
+    public static ListNode swapPairs(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -25,7 +29,7 @@ public class SwapNodesInPairs {
         return reverse(head, len);
     }
 
-    private int getLength(ListNode curr) {
+    private static int getLength(ListNode curr) {
         int cnt = 0;
         while (curr != null) {
             cnt++;
@@ -35,7 +39,7 @@ public class SwapNodesInPairs {
     }
 
     // Recursive function to reverse in groups
-    private ListNode reverse(ListNode head, int len) {
+    private static ListNode reverse(ListNode head, int len) {
         // base case
         if (len < 2) {
             return head;
@@ -52,5 +56,12 @@ public class SwapNodesInPairs {
         }
         head.next = reverse(curr, len - 2);
         return prev;
+    }
+
+    public static void main(String[] args) {
+        ListNode head = LinkedListUtils.createSinglyLinkedList(Arrays.asList(1, 2, 3, 4));
+        System.out.println("Swapped Pairs: " + swapPairs(head).toString());
+
+        System.out.println(swapPairs(new ListNode(1)).toString());
     }
 }

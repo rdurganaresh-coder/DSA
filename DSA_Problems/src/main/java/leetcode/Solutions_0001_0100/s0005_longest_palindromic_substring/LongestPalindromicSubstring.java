@@ -6,7 +6,7 @@ package leetcode.Solutions_0001_0100.s0005_longest_palindromic_substring;
 // #Big_O_Time_O(n)_Space_O(n) #2024_11_09_Time_7_ms_(97.82%)_Space_43_MB_(66.41%)
 
 public class LongestPalindromicSubstring {
-    public String longestPalindrome(String s) {
+    public static String longestPalindrome(String s) {
         char[] newStr = new char[s.length() * 2 + 1];
         newStr[0] = '#';
         for (int i = 0; i < s.length(); i++) {
@@ -38,5 +38,16 @@ public class LongestPalindromicSubstring {
             }
         }
         return s.substring((lpsCenter - lpsRadius + 1) / 2, (lpsCenter + lpsRadius - 1) / 2);
+    }
+
+    public static void main(String[] args) {
+        String result1 = longestPalindrome("babad");
+        System.out.println("Longest palindromic substring: " + result1);
+        String result2 = longestPalindrome("cbbd");
+        System.out.println("Longest palindromic substring: " + result2);
+        String result3 = longestPalindrome("a");
+        System.out.println("Longest palindromic substring: " + result3);
+        String result4 = longestPalindrome("ac");
+        System.out.println("Longest palindromic substring: " + result4);
     }
 }

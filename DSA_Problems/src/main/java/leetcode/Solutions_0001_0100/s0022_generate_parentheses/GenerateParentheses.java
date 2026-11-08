@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateParentheses {
-    public List<String> generateParenthesis(int n) {
+    public static List<String> generateParenthesis(int n) {
         StringBuilder sb = new StringBuilder();
         List<String> ans = new ArrayList<>();
         return generate(sb, ans, n, n);
     }
 
-    private List<String> generate(StringBuilder sb, List<String> str, int open, int close) {
+    private static List<String> generate(StringBuilder sb, List<String> str, int open, int close) {
         if (open == 0 && close == 0) {
             str.add(sb.toString());
             return str;
@@ -30,5 +30,12 @@ public class GenerateParentheses {
             sb.deleteCharAt(sb.length() - 1);
         }
         return str;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(generateParenthesis(3));
+        System.out.println(generateParenthesis(2));
+        System.out.println(generateParenthesis(1));
+        System.out.println(generateParenthesis(0));
     }
 }

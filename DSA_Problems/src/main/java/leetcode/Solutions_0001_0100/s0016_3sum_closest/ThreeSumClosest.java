@@ -6,7 +6,7 @@ package leetcode.Solutions_0001_0100.s0016_3sum_closest;
 import java.util.Arrays;
 
 public class ThreeSumClosest {
-    public int threeSumClosest(int[] nums, int target) {
+    public static int threeSumClosest(int[] nums, int target) {
         if (nums == null || nums.length < 3) {
             return 0;
         }
@@ -43,7 +43,21 @@ public class ThreeSumClosest {
         return sum;
     }
 
-    private int lessGap(int sum, int temp, int target) {
+    private static int lessGap(int sum, int temp, int target) {
         return Math.abs(sum - target) < Math.abs(temp - target) ? sum : temp;
+    }
+
+    public static void main(String[] args) {
+        int result1 = threeSumClosest(new int[] {-1, 2, 1, -4}, 1);
+        System.out.println(result1);
+
+        int result2 = threeSumClosest(new int[] {0, 0, 0}, 1);
+        System.out.println(result2);
+
+        int result3 = threeSumClosest(new int[] {1, 2, 4, 8, 16, 32, 64, 128}, 82);
+        System.out.println(result3);
+
+        int result4 = threeSumClosest(new int[] {4, 0, 5, -5, 3, 3, 0, -4, -5}, -2);
+        System.out.println(result4);
     }
 }

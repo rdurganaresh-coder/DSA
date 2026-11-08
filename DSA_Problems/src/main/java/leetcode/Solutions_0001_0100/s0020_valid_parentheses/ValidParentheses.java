@@ -8,7 +8,7 @@ import java.util.Stack;
 
 @SuppressWarnings("java:S1149")
 public class ValidParentheses {
-    public boolean isValid(String s) {
+    public static boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
@@ -25,5 +25,18 @@ public class ValidParentheses {
             }
         }
         return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        boolean result1 = isValid("()");
+        System.out.println(result1); // Output: true
+        boolean result2 = isValid("()[]{}");
+        System.out.println(result2); // Output: true
+        boolean result3 = isValid("(]");
+        System.out.println(result3); // Output: false
+        boolean result4 = isValid("([)]");
+        System.out.println(result4); // Output: false
+        boolean result5 = isValid("{[]}");
+        System.out.println(result5); // Output: true
     }
 }

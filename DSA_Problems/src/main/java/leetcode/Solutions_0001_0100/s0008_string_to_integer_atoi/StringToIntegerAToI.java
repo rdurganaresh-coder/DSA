@@ -4,7 +4,7 @@ package leetcode.Solutions_0001_0100.s0008_string_to_integer_atoi;
 // #2024_11_09_Time_1_ms_(100.00%)_Space_42_MB_(95.40%)
 
 public class StringToIntegerAToI {
-    public int myAtoi(String str) {
+    public static int myAtoi(String str) {
         if (str == null || str.isEmpty()) {
             return 0;
         }
@@ -40,5 +40,15 @@ public class StringToIntegerAToI {
             }
         }
         return num;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(myAtoi("42")); // 42
+        System.out.println(myAtoi("   -42")); // -42
+        System.out.println(myAtoi("4193 with words")); // 4193
+        System.out.println(myAtoi("words and 987")); // 0
+        System.out.println(myAtoi("-91283472332")); // -2147483648
+        System.out.println(myAtoi("91283472332")); // 2147483647
+        System.out.println(myAtoi("3.14159")); // 3
     }
 }

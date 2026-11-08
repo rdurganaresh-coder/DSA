@@ -4,7 +4,7 @@ package leetcode.Solutions_0001_0100.s0009_palindrome_number;
 // #2024_11_09_Time_4_ms_(100.00%)_Space_44.1_MB_(28.20%)
 
 public class PalindromeNumber {
-    public boolean isPalindrome(int x) {
+    public static boolean isPalindrome(int x) {
         if (x < 0) {
             return false;
         }
@@ -16,5 +16,14 @@ public class PalindromeNumber {
             localX /= 10;
         }
         return rev == x;
+    }
+
+    public static void main(String[] args) {
+        boolean result1 = isPalindrome(121);
+        System.out.println(result1);
+        boolean result2 = isPalindrome(-121);
+        System.out.println(result2);
+        boolean result3 = isPalindrome(10);
+        System.out.println(result3);
     }
 }

@@ -4,14 +4,14 @@ package leetcode.Solutions_0001_0100.s0010_regular_expression_matching;
 // #Big_O_Time_O(m*n)_Space_O(m*n) #2024_11_09_Time_1_ms_(100.00%)_Space_41.8_MB_(87.69%)
 
 public class RegularExpressionMatching {
-    private Boolean[][] cache;
+    private static Boolean[][] cache;
 
-    public boolean isMatch(String s, String p) {
+    public static boolean isMatch(String s, String p) {
         cache = new Boolean[s.length() + 1][p.length() + 1];
         return isMatch(s, p, 0, 0);
     }
 
-    private boolean isMatch(String s, String p, int i, int j) {
+    private static boolean isMatch(String s, String p, int i, int j) {
         if (j == p.length()) {
             return i == s.length();
         }
@@ -27,5 +27,13 @@ public class RegularExpressionMatching {
         }
         cache[i][j] = result;
         return result;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isMatch("aa", "a")); // false
+        System.out.println(isMatch("aa", "a*")); // true
+        System.out.println(isMatch("ab", ".*")); // true
+        System.out.println(isMatch("aab", "c*a*b")); // true
+        System.out.println(isMatch("mississippi", "mis*is*p*.")); // false
     }
 }

@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LetterCombinationsOfAPhoneNumber {
-    public List<String> letterCombinations(String digits) {
+    public static List<String> letterCombinations(String digits) {
         if (digits.isEmpty()) {
             return Collections.emptyList();
         }
@@ -21,7 +21,7 @@ public class LetterCombinationsOfAPhoneNumber {
         return ans;
     }
 
-    private void findCombinations(
+    private static void findCombinations(
             int start, String nums, String[] letters, StringBuilder curr, List<String> ans) {
         if (curr.length() == nums.length()) {
             ans.add(curr.toString());
@@ -36,5 +36,16 @@ public class LetterCombinationsOfAPhoneNumber {
                 curr.deleteCharAt(curr.length() - 1);
             }
         }
+    }
+
+    public static void main(String[] args) {
+       List<String> result1 = letterCombinations("23");
+       System.out.println(result1); // Output: [ad, ae, af, bd, be, bf, cd, ce, cf]
+       
+        List<String> result2 = letterCombinations("");
+        System.out.println(result2); // Output: []
+
+        List<String> result3 = letterCombinations("2");
+        System.out.println(result3); // Output: [a, b, c]
     }
 }

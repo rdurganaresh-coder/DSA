@@ -1,7 +1,7 @@
 package leetcode.Solutions_0001_0100.s0014_longest_common_prefix;
 
 public class LongestCommonPrefix {
-    public String longestCommonPrefix(String[] strs) {
+    public static String longestCommonPrefix(String[] strs) {
         if (strs.length < 1) {
             return "";
         }
@@ -26,12 +26,10 @@ public class LongestCommonPrefix {
     }
 
     public static void main(String[] args) {
-        LongestCommonPrefix lcp1 = new LongestCommonPrefix();
         String[] strs1 = {"flower", "flow", "flight"};
-        System.out.println(lcp1.longestCommonPrefix(strs1));
+        System.out.println(longestCommonPrefix(strs1));
 
-        LongestCommonPrefix lcp2 = new LongestCommonPrefix();
         String[] strs2 = {"dog", "racecar", "car"};
-        System.out.println(lcp2.longestCommonPrefix(strs2));
+        System.out.println(longestCommonPrefix(strs2));
     }
 }

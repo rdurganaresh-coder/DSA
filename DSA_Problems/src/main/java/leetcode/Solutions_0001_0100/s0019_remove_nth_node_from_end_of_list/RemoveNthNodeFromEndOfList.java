@@ -1,5 +1,7 @@
 package leetcode.Solutions_0001_0100.s0019_remove_nth_node_from_end_of_list;
 
+import leetcode.utils.LinkedListUtils;
+
 // #Medium #Top_100_Liked_Questions #Top_Interview_Questions #Two_Pointers #Linked_List
 // #Algorithm_I_Day_5_Two_Pointers #Level_2_Day_3_Linked_List #Top_Interview_150_Linked_List
 // #Big_O_Time_O(L)_Space_O(L) #2024_11_09_Time_0_ms_(100.00%)_Space_41.4_MB_(87.28%)
@@ -17,24 +19,39 @@ import leetcode.utils.ListNode;
  * }
  */
 public class RemoveNthNodeFromEndOfList {
-    private int n;
+    private static int n;
 
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-        this.n = n;
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        RemoveNthNodeFromEndOfList.n = n;
         ListNode node = new ListNode(0, head);
         removeNth(node);
         return node.next;
     }
 
-    private void removeNth(ListNode node) {
+    private static void removeNth(ListNode node) {
         if (node.next == null) {
             return;
         }
         removeNth(node.next);
-        this.n--;
+        RemoveNthNodeFromEndOfList.n--;
 
-        if (this.n == 0) {
+        if (RemoveNthNodeFromEndOfList.n == 0) {
             node.next = node.next.next;
         }
+    }
+
+    public static void main(String[] args) {
+        ListNode node1 = LinkedListUtils.contructLinkedList(new int[] {1, 2, 3, 4, 5});
+        ListNode result1 = removeNthFromEnd(node1, 2);
+    
+         // Static Console Output: "1, 2, 3, 5"
+        System.out.println("Output 1: " + (result1 != null ? result1.toString() : "null"));
+
+        ListNode node2 = new ListNode();
+        node1.val = 1;
+        ListNode result2 = removeNthFromEnd(node2, 1);
+    
+        // Static Console Output: "null"
+        System.out.println("Output 2: " + (result2 != null ? result2.toString() : "null"));
     }
 }
