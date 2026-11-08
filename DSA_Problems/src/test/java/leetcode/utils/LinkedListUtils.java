@@ -1,6 +1,5 @@
 package leetcode.utils;
 
-import leetcode.utils.ListNode;
 
 import java.util.List;
 
