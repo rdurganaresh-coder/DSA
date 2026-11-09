@@ -120,6 +120,63 @@ public class LRUCache {
         head.prev = node;
         head = node;
     }
+
+    // --- Helper Method to Verify Internal State Sequence ---
+    private String getCacheSequence() {
+        StringBuilder sb = new StringBuilder("[");
+        LruCacheNode current = head;
+        while (current != null) {
+            sb.append("(").append(current.key).append(":").append(current.value).append(")");
+            if (current.next != null) sb.append(" -> ");
+            current = current.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+
+    // --- Main Method Executing Test Cases ---
+    public static void main(String[] args) {
+        System.out.println("--- Running LRU Cache Tests ---\n");
+
+        // Test Case 1: Standard Operations & Evictions (Capacity 2)
+        System.out.println("Test 1: Standard Operations (Capacity = 2)");
+        LRUCache cache = new LRUCache(2);
+
+        cache.put(1, 1); // cache: [(1:1)]
+        cache.put(2, 2); // cache: [(2:2) -> (1:1)]
+        System.out.println("Get(1): " + cache.get(1) + " (Expected: 1) -> Sequence: " + cache.getCacheSequence());
+        
+        cache.put(3, 3); // evicts key 2, cache: [(3:3) -> (1:1)]
+        System.out.println("Get(2): " + cache.get(2) + " (Expected: -1)");
+        
+        cache.put(4, 4); // evicts key 1, cache: [(4:4) -> (3:3)]
+        System.out.println("Get(1): " + cache.get(1) + " (Expected: -1)");
+        System.out.println("Get(3): " + cache.get(3) + " (Expected: 3)");
+        System.out.println("Get(4): " + cache.get(4) + " (Expected: 4) -> Final Sequence: " + cache.getCacheSequence() + "\n");
+
+        // Test Case 2: Key Updates & Head Reordering (Capacity 2)
+        System.out.println("Test 2: Key Overwrites and Promotion (Capacity = 2)");
+        LRUCache cache2 = new LRUCache(2);
+        
+        cache2.put(1, 10);
+        cache2.put(2, 20);
+        cache2.put(1, 15); // Update existing key 1, moves to head
+        System.out.println("Get(1) after update: " + cache2.get(1) + " (Expected: 15) -> Sequence: " + cache2.getCacheSequence());
+        
+        cache2.put(3, 30); // Evicts key 2 (since 1 was promoted)
+        System.out.println("Get(2): " + cache2.get(2) + " (Expected: -1)");
+        System.out.println("Get(1): " + cache2.get(1) + " (Expected: 15)\n");
+
+        // Test Case 3: Capacity of 1 Edge Case
+        System.out.println("Test 3: Single Capacity Edge Case (Capacity = 1)");
+        LRUCache cache3 = new LRUCache(1);
+        
+        cache3.put(5, 50);
+        System.out.println("Get(5): " + cache3.get(5) + " (Expected: 50)");
+        cache3.put(6, 60); // Evicts key 5 immediately
+        System.out.println("Get(5): " + cache3.get(5) + " (Expected: -1)");
+        System.out.println("Get(6): " + cache3.get(6) + " (Expected: 60)");
+    }
 }
 
 /*
