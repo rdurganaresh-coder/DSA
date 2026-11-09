@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
-public class Solution {
+public class Word_Ladder_ii {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> ans = new ArrayList<>();
         // reverse graph start from endWord
@@ -113,4 +113,30 @@ public class Solution {
         }
         return diffCount == 1;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard case with multiple shortest paths of identical length
+    // Paths: ["hit","hot","dot","dog","cog"] and ["hit","hot","lot","log","cog"]
+    String beginWord1 = "hit";
+    String endWord1 = "cog";
+    List<String> wordList1 = new ArrayList<>(List.of("hot", "dot", "dog", "lot", "log", "cog"));
+    List<List<String>> result1 = new Word_Ladder_ii().findLadders(beginWord1, endWord1, wordList1);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: No possible structural ladder connection exists to the end word
+    // Expected Output: []
+    String beginWord2 = "hit";
+    String endWord2 = "cog";
+    List<String> wordList2 = new ArrayList<>(List.of("hot", "dot", "dog", "lot", "log"));
+    List<List<String>> result2 = new Word_Ladder_ii().findLadders(beginWord2, endWord2, wordList2);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: Immediate neighbor transformation link
+    // Expected Output: [["a", "b"]]
+    String beginWord3 = "a";
+    String endWord3 = "b";
+    List<String> wordList3 = new ArrayList<>(List.of("b", "c"));
+    List<List<String>> result3 = new Word_Ladder_ii().findLadders(beginWord3, endWord3, wordList3);
+    System.out.println("Test 3 Result: " + result3);
+}
 }
