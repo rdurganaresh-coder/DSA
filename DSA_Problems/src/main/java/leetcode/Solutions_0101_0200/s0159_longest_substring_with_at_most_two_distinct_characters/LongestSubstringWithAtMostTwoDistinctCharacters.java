@@ -1,4 +1,4 @@
-package leetcode.Solutions_0101_0200.s159_longest_substring_with_at_most_two_distinct_characters;
+package leetcode.Solutions_0101_0200.s0159_longest_substring_with_at_most_two_distinct_characters;
 
 import java.util.HashMap;
 import java.util.Map;
