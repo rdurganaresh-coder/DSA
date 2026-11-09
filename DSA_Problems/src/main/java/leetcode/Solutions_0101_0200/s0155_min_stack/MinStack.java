@@ -47,6 +47,33 @@ public class MinStack {
     public int getMin() {
         return currentNode.min;
     }
+
+    // --- Main Method Executing Test Cases ---
+    public static void main(String[] args) {
+        System.out.println("--- Running MinStack Tests ---\n");
+
+        MinStack minStack = new MinStack();
+
+        // 1. Push elements onto the stack
+        System.out.println("Pushing: -2, 0, -3");
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+
+        // 2. Validate standard operations and tracking
+        System.out.println("getMin(): " + minStack.getMin() + " (Expected: -3)");
+        
+        minStack.pop();
+        System.out.println("\n--- After Pop ---");
+        System.out.println("top():    " + minStack.top()    + " (Expected: 0)");
+        System.out.println("getMin(): " + minStack.getMin() + " (Expected: -2)");
+
+        // 3. Push a larger number to verify minimum stays consistent
+        minStack.push(5);
+        System.out.println("\n--- After Pushing 5 ---");
+        System.out.println("top():    " + minStack.top()    + " (Expected: 5)");
+        System.out.println("getMin(): " + minStack.getMin() + " (Expected: -2)");
+    }
 }
 
 /*
