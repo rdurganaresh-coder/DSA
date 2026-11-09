@@ -25,4 +25,29 @@ public class Gray_Code {
         }
         return Arrays.asList(n1);
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Minimum typical configuration (n = 2)
+    // Binary sequence values: 00 (0), 01 (1), 11 (3), 10 (2)
+    List<Integer> result1 = new Gray_Code().grayCode(2);
+    System.out.println("Test 1 (n = 2): " + result1);
+    // Expected Output: [0, 1, 3, 2]
+
+    // Test Case 2: Minimal bit scale base case (n = 1)
+    // Binary sequence values: 0, 1
+    List<Integer> result2 = new Gray_Code().grayCode(1);
+    System.out.println("Test 2 (n = 1): " + result2);
+    // Expected Output: [0, 1]
+
+    // Test Case 3: Zero bit edge configuration input (n = 0)
+    // Binary sequence values: 0
+    List<Integer> result3 = new Gray_Code().grayCode(0);
+    System.out.println("Test 3 (n = 0): " + result3);
+    // Expected Output: [0]
+
+    // Test Case 4: Larger bit scale context verifying progression (n = 3)
+    List<Integer> result4 = new Gray_Code().grayCode(3);
+    System.out.println("Test 4 (n = 3): " + result4);
+    // Expected Output: [0, 1, 3, 2, 6, 7, 5, 4]
+}
 }

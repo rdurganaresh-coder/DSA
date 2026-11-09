@@ -31,4 +31,30 @@ public class Minimum_Window_Substring {
         }
         return d == Integer.MAX_VALUE ? "" : s.substring(head, head + d);
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard case with a clear minimum window (Should output "BANC")
+    String s1 = "ADOBECODEBANC";
+    String t1 = "ABC";
+    String result1 = new Minimum_Window_Substring().minWindow(s1, t1);
+    System.out.println("Test 1 Result: \"" + result1 + "\"");
+
+    // Test Case 2: Target is the exact entire string (Should output "a")
+    String s2 = "a";
+    String t2 = "a";
+    String result2 = new Minimum_Window_Substring().minWindow(s2, t2);
+    System.out.println("Test 2 Result: \"" + result2 + "\"");
+
+    // Test Case 3: Target cannot be formed from string (Should output "")
+    String s3 = "a";
+    String t3 = "aa";
+    String result3 = new Minimum_Window_Substring().minWindow(s3, t3);
+    System.out.println("Test 3 Result: \"" + result3 + "\"");
+
+    // Test Case 4: Target contains mixed case characters (Should output "aB")
+    String s4 = "aBcDeFg";
+    String t4 = "Ba";
+    String result4 = new Minimum_Window_Substring().minWindow(s4, t4);
+    System.out.println("Test 4 Result: \"" + result4 + "\"");
+}
 }

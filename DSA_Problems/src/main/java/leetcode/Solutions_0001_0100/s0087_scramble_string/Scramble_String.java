@@ -24,4 +24,31 @@ public class Scramble_String {
         }
         return dp[0][0][n];
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Valid scramble string transformation with a swap (Should output true)
+    // "great" -> "rgeat" (swapping "g" and "r") -> "rgtae" (swapping "at" to "ta") -> "rgtae"
+    String s1_1 = "great";
+    String s1_2 = "rgeat";
+    boolean result1 = new Scramble_String().isScramble(s1_1, s1_2);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Invalid transformation with character frequency mismatch (Should output false)
+    String s2_1 = "abcde";
+    String s2_2 = "caebd";
+    boolean result2 = new Scramble_String().isScramble(s2_1, s2_2);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: Identical single-character base strings (Should output true)
+    String s3_1 = "a";
+    String s3_2 = "a";
+    boolean result3 = new Scramble_String().isScramble(s3_1, s3_2);
+    System.out.println("Test 3 Result: " + result3);
+
+    // Test Case 4: Mismatched single-character base strings (Should output false)
+    String s4_1 = "a";
+    String s4_2 = "b";
+    boolean result4 = new Scramble_String().isScramble(s4_1, s4_2);
+    System.out.println("Test 4 Result: " + result4);
+}
 }

@@ -82,4 +82,36 @@ public class Maximal_Rectangle {
         }
         return res;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard multi-row matrix with a clear maximal block of 1s
+    // Expected max area: 6 (formed by the 2x3 block of '1's in rows 1-2, columns 2-4)
+    char[][] matrix1 = {
+        {'1', '0', '1', '0', '0'},
+        {'1', '0', '1', '1', '1'},
+        {'1', '1', '1', '1', '1'},
+        {'1', '0', '0', '1', '0'}
+    };
+    int result1 = new Maximal_Rectangle().maximalRectangle(matrix1);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Minimal single-cell matrix containing a '0'
+    char[][] matrix2 = {
+        {'0'}
+    };
+    int result2 = new Maximal_Rectangle().maximalRectangle(matrix2);
+    System.out.println("Test 2 Result (Single '0'): " + result2);
+
+    // Test Case 3: Minimal single-cell matrix containing a '1'
+    char[][] matrix3 = {
+        {'1'}
+    };
+    int result3 = new Maximal_Rectangle().maximalRectangle(matrix3);
+    System.out.println("Test 3 Result (Single '1'): " + result3);
+
+    // Test Case 4: Completely empty matrix grid representation
+    char[][] matrix4 = {};
+    int result4 = new Maximal_Rectangle().maximalRectangle(matrix4);
+    System.out.println("Test 4 Result (Empty Matrix): " + result4);
+}
 }

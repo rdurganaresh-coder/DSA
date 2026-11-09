@@ -64,4 +64,29 @@ public class Largest_Rectangle_In_Histogram {
     private int maxOfThreeNums(int a, int b, int c) {
         return Math.max(Math.max(a, b), c);
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard mixed histogram layout
+    // Expected max area: 10 (bars 5 and 6 combine: min(5,6) * 2 = 10)
+    int[] heights1 = {2, 1, 5, 6, 2, 3};
+    int result1 = new Largest_Rectangle_In_Histogram().largestRectangleArea(heights1);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Standard two-bar configuration
+    // Expected max area: 4 (bar 4 alone is greater than min(2,4)*2)
+    int[] heights2 = {2, 4};
+    int result2 = new Largest_Rectangle_In_Histogram().largestRectangleArea(heights2);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: Empty array edge case
+    int[] heights3 = {};
+    int result3 = new Largest_Rectangle_In_Histogram().largestRectangleArea(heights3);
+    System.out.println("Test 3 Result (Empty): " + result3);
+
+    // Test Case 4: Continuously increasing bars (Triggers your sorted optimization loop)
+    // Expected max area: 9 (bar 3 onwards: 3 * 3 = 9)
+    int[] heights4 = {1, 2, 3, 4, 5};
+    int result4 = new Largest_Rectangle_In_Histogram().largestRectangleArea(heights4);
+    System.out.println("Test 4 Result (Sorted): " + result4);
+}
 }

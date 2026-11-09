@@ -20,4 +20,26 @@ public class Search_In_Rotated_Sorted_Array_ii {
         boolean c2 = binary(a, mid + 1, j, t);
         return c1 || c2;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Target exists in an array with duplicates (Should output true)
+    int[] nums1 = {2, 5, 6, 0, 0, 1, 2};
+    boolean result1 = new Search_In_Rotated_Sorted_Array_ii().search(nums1, 0);
+    System.out.println("Test 1 (Target 0): " + result1);
+
+    // Test Case 2: Target does not exist in the array (Should output false)
+    int[] nums2 = {2, 5, 6, 0, 0, 1, 2};
+    boolean result2 = new Search_In_Rotated_Sorted_Array_ii().search(nums2, 3);
+    System.out.println("Test 2 (Target 3): " + result2);
+
+    // Test Case 3: Tricky case where edges match the middle element (Should output true)
+    int[] nums3 = {1, 0, 1, 1, 1};
+    boolean result3 = new Search_In_Rotated_Sorted_Array_ii().search(nums3, 0);
+    System.out.println("Test 3 (Target 0): " + result3);
+
+    // Test Case 4: Empty input array edge case (Should output false)
+    int[] nums4 = {};
+    boolean result4 = new Search_In_Rotated_Sorted_Array_ii().search(nums4, 5);
+    System.out.println("Test 4 (Target 5): " + result4);
+}
 }

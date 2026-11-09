@@ -23,4 +23,29 @@ public class Subsets {
             temp.remove(temp.size() - 1);
         }
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard input with three distinct values
+    // Expected total elements: 2^3 = 8 subsets
+    int[] nums1 = {1, 2, 3};
+    List<List<Integer>> result1 = new Subsets().subsets(nums1);
+    System.out.println("Test 1 Total Subsets: " + result1.size());
+    System.out.println("Test 1 Result: " + result1);
+    System.out.println();
+
+    // Test Case 2: Single element array base case
+    // Expected total elements: 2^1 = 2 subsets ([], [0])
+    int[] nums2 = {0};
+    List<List<Integer>> result2 = new Subsets().subsets(nums2);
+    System.out.println("Test 2 Total Subsets: " + result2.size());
+    System.out.println("Test 2 Result: " + result2);
+    System.out.println();
+
+    // Test Case 3: Empty input array edge case
+    // Expected total elements: 2^0 = 1 subset ([])
+    int[] nums3 = {};
+    List<List<Integer>> result3 = new Subsets().subsets(nums3);
+    System.out.println("Test 3 Total Subsets: " + result3.size());
+    System.out.println("Test 3 Result: " + result3);
+}
 }

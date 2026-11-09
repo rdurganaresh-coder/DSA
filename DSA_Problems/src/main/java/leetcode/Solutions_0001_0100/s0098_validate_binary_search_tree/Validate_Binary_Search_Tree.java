@@ -38,4 +38,41 @@ public class Validate_Binary_Search_Tree {
         }
         return solve(root.left, left, root.val) && solve(root.right, root.val, right);
     }
+
+    public static void main(String[] args) {
+        // Test Case 1: Standard valid Binary Search Tree (Should output true)
+        // Tree structure:   2
+        //                  / \
+        //                 1   3
+        TreeNode root1 = new TreeNode(2, new TreeNode(1), new TreeNode(3));
+        boolean result1 = new Validate_Binary_Search_Tree().isValidBST(root1);
+        System.out.println("Test 1 (Valid BST): " + result1);
+
+        // Test Case 2: Invalid BST due to a out-of-position grandchild node (Should output false)
+        // Tree structure:   5
+        //                  / \
+        //                 1   4
+        //                    / \
+        //                   3   6
+        // Note: 3 is in the right subtree of 5, which violates the BST rule (3 < 5).
+        TreeNode root2 = new TreeNode(5);
+        root2.left = new TreeNode(1);
+        root2.right = new TreeNode(4, new TreeNode(3), new TreeNode(6));
+        boolean result2 = new Validate_Binary_Search_Tree().isValidBST(root2);
+        System.out.println("Test 2 (Invalid BST): " + result2);
+
+        // Test Case 3: Empty tree base configuration (Should output true)
+        TreeNode root3 = null;
+        boolean result3 = new Validate_Binary_Search_Tree().isValidBST(root3);
+        System.out.println("Test 3 (Empty Tree): " + result3);
+
+        // Test Case 4: Tricky extreme integer boundary values (Should output true)
+        // Tree structure: Integer.MAX_VALUE
+        //                 /
+        //          Integer.MIN_VALUE
+        TreeNode root4 = new TreeNode(Integer.MAX_VALUE);
+        root4.left = new TreeNode(Integer.MIN_VALUE);
+        boolean result4 = new Validate_Binary_Search_Tree().isValidBST(root4);
+        System.out.println("Test 4 (Boundary Values): " + result4);
+    }
 }

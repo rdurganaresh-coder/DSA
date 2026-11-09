@@ -14,4 +14,26 @@ public class Unique_Binary_Search_Trees {
         result /= n + 1;
         return (int) result;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard benchmark value (n = 3)
+    int result1 = new Unique_Binary_Search_Trees().numTrees(3);
+    System.out.println("Test 1 (n = 3) -> Count: " + result1);
+    // Expected Output: 5
+
+    // Test Case 2: Minimal single element node configuration (n = 1)
+    int result2 = new Unique_Binary_Search_Trees().numTrees(1);
+    System.out.println("Test 2 (n = 1) -> Count: " + result2);
+    // Expected Output: 1
+
+    // Test Case 3: Small node collection (n = 4)
+    int result3 = new Unique_Binary_Search_Trees().numTrees(4);
+    System.out.println("Test 3 (n = 4) -> Count: " + result3);
+    // Expected Output: 14
+
+    // Test Case 4: Scale evaluation to confirm long truncation safety (n = 19)
+    int result4 = new Unique_Binary_Search_Trees().numTrees(19);
+    System.out.println("Test 4 (n = 19) -> Count: " + result4);
+    // Expected Output: 1767263190
+}
 }

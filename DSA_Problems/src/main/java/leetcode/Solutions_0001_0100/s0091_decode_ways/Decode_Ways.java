@@ -29,4 +29,33 @@ public class Decode_Ways {
         }
         return f[n];
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Standard string with multiple separate decoding options
+    // "12" can be decoded as "AB" (1 2) or "L" (12)
+    String s1 = "12";
+    int result1 = new Decode_Ways().numDecodings(s1);
+    System.out.println("Test 1 Result (\"12\"): " + result1);
+    // Expected Output: 2
+
+    // Test Case 2: Longer string with multi-digit overlapping combinations
+    // "226" can be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6)
+    String s2 = "226";
+    int result2 = new Decode_Ways().numDecodings(s2);
+    System.out.println("Test 2 Result (\"226\"): " + result2);
+    // Expected Output: 3
+
+    // Test Case 3: Leading zero invalid configuration edge case
+    String s3 = "06";
+    int result3 = new Decode_Ways().numDecodings(s3);
+    System.out.println("Test 3 Result (\"06\"): " + result3);
+    // Expected Output: 0
+
+    // Test Case 4: String containing internal valid zero groups (e.g., '10')
+    // "10" can only be decoded as "J" (10). '0' cannot stand alone.
+    String s4 = "10";
+    int result4 = new Decode_Ways().numDecodings(s4);
+    System.out.println("Test 4 Result (\"10\"): " + result4);
+    // Expected Output: 1
+}
 }

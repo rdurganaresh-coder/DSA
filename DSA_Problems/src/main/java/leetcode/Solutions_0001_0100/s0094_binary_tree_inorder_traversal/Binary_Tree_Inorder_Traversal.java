@@ -46,4 +46,47 @@ public class Binary_Tree_Inorder_Traversal {
             inorderTraversal(root.right, answer);
         }
     }
+
+    public static void main(String[] args) {
+        // Test Case 1: Standard skewed tree configuration
+        // Tree structure: 1
+        //                  \
+        //                   2
+        //                  /
+        //                 3
+        TreeNode root1 = new TreeNode(1);
+        root1.right = new TreeNode(2);
+        root1.right.left = new TreeNode(3);
+        
+        List<Integer> result1 = new Binary_Tree_Inorder_Traversal().inorderTraversal(root1);
+        System.out.println("Test 1 Result: " + result1);
+        // Expected Output: [1, 3, 2]
+
+        // Test Case 2: Full balanced binary tree
+        // Tree structure:     4
+        //                   /   \
+        //                  2     6
+        //                 / \   / \
+        //                1   3 5   7
+        TreeNode root2 = new TreeNode(4,
+            new TreeNode(2, new TreeNode(1), new TreeNode(3)),
+            new TreeNode(6, new TreeNode(5), new TreeNode(7))
+        );
+        
+        List<Integer> result2 = new Binary_Tree_Inorder_Traversal().inorderTraversal(root2);
+        System.out.println("Test 2 Result: " + result2);
+        // Expected Output: [1, 2, 3, 4, 5, 6, 7]
+
+        // Test Case 3: Empty tree edge case (root is null)
+        TreeNode root3 = null;
+        List<Integer> result3 = new Binary_Tree_Inorder_Traversal().inorderTraversal(root3);
+        System.out.println("Test 3 Result (Empty): " + result3);
+        // Expected Output: []
+
+        // Test Case 4: Single element base node tree
+        TreeNode root4 = new TreeNode(1);
+        List<Integer> result4 = new Binary_Tree_Inorder_Traversal().inorderTraversal(root4);
+        System.out.println("Test 4 Result (Single Node): " + result4);
+        // Expected Output: [1]
+    }
 }

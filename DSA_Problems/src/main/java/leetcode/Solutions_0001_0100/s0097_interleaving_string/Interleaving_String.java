@@ -30,4 +30,35 @@ public class Interleaving_String {
         cache[i1][i2] = result;
         return result;
     }
+
+    public static void main(String[] args) {
+    // Test Case 1: Valid interleaving path (Should output true)
+    // s3 splits letters from s1 and s2 cleanly while preserving relative order
+    String s1_1 = "aabcc";
+    String s1_2 = "dbbca";
+    String s1_3 = "aadbbcbcac";
+    boolean result1 = new Interleaving_String().isInterleave(s1_1, s1_2, s1_3);
+    System.out.println("Test 1 Result: " + result1);
+
+    // Test Case 2: Invalid interleaving path due to character mismatch (Should output false)
+    String s2_1 = "aabcc";
+    String s2_2 = "dbbca";
+    String s2_3 = "aadbbbaccc";
+    boolean result2 = new Interleaving_String().isInterleave(s2_1, s2_2, s2_3);
+    System.out.println("Test 2 Result: " + result2);
+
+    // Test Case 3: Empty string base configurations (Should output true)
+    String s3_1 = "";
+    String s3_2 = "";
+    String s3_3 = "";
+    boolean result3 = new Interleaving_String().isInterleave(s3_1, s3_2, s3_3);
+    System.out.println("Test 3 Result (All Empty): " + result3);
+
+    // Test Case 4: Length validation short-circuit case (Should output false)
+    String s4_1 = "a";
+    String s4_2 = "b";
+    String s4_3 = "a";
+    boolean result4 = new Interleaving_String().isInterleave(s4_1, s4_2, s4_3);
+    System.out.println("Test 4 Result (Mismatched Lengths): " + result4);
+}
 }

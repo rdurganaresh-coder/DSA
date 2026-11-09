@@ -30,4 +30,30 @@ public class Same_Tree {
         boolean b2 = isSameTree(p.right, q.right);
         return p.val == q.val && b1 && b2;
     }
+
+    public static void main(String[] args) {
+        // Test Case 1: Identical balanced structures (Should output true)
+        TreeNode t1_p = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+        TreeNode t1_q = new TreeNode(1, new TreeNode(2), new TreeNode(3));
+        boolean result1 = new Same_Tree().isSameTree(t1_p, t1_q);
+        System.out.println("Test 1 (Identical Trees): " + result1);
+
+        // Test Case 2: Structural asymmetry / Mismatched child placement (Should output false)
+        // t2_p: Left child is 2, Right child is null
+        // t2_q: Left child is null, Right child is 2
+        TreeNode t2_p = new TreeNode(1, new TreeNode(2), null);
+        TreeNode t2_q = new TreeNode(1, null, new TreeNode(2));
+        boolean result2 = new Same_Tree().isSameTree(t2_p, t2_q);
+        System.out.println("Test 2 (Mismatched Structures): " + result2);
+
+        // Test Case 3: Same structure but mismatched values (Should output false)
+        TreeNode t3_p = new TreeNode(1, new TreeNode(2), new TreeNode(1));
+        TreeNode t3_q = new TreeNode(1, new TreeNode(1), new TreeNode(2));
+        boolean result3 = new Same_Tree().isSameTree(t3_p, t3_q);
+        System.out.println("Test 3 (Mismatched Values): " + result3);
+
+        // Test Case 4: Double null base configuration (Should output true)
+        boolean result4 = new Same_Tree().isSameTree(null, null);
+        System.out.println("Test 4 (Both Null): " + result4);
+    }
 }

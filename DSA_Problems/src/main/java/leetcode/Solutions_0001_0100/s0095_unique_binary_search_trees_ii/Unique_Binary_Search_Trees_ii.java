@@ -62,4 +62,43 @@ public class Unique_Binary_Search_Trees_ii {
         }
         return new TreeNode(n.val, copy(n.left), copy(n.right));
     }
+
+    // Helper method to serialize a binary tree structure into a flat list view for output readability
+    private static List<Integer> serializeTree(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        serializeHelper(root, list);
+        return list;
+    }
+
+    private static void serializeHelper(TreeNode node, List<Integer> list) {
+        if (node == null) {
+            list.add(null);
+            return;
+        }
+        list.add(node.val);
+        serializeHelper(node.left, list);
+        serializeHelper(node.right, list);
+    }
+
+    public static void main(String[] args) {
+        // Test Case 1: Minimum typical configuration (n = 1)
+        // Should output 1 unique tree: [1]
+        List<TreeNode> result1 = new Unique_Binary_Search_Trees_ii().generateTrees(1);
+        System.out.println("Test 1 (n = 1) Total Trees: " + result1.size());
+        
+        // Test Case 2: Small size configuration (n = 2)
+        // Should output 2 unique trees: [1, null, 2] and [2, 1]
+        List<TreeNode> result2 = new Unique_Binary_Search_Trees_ii().generateTrees(2);
+        System.out.println("Test 2 (n = 2) Total Trees: " + result2.size());
+
+        // Test Case 3: Standard benchmark target (n = 3)
+        // Should output 5 unique structurally distinct BST configurations
+        List<TreeNode> result3 = new Unique_Binary_Search_Trees_ii().generateTrees(3);
+        System.out.println("Test 3 (n = 3) Total Trees: " + result3.size());
+
+        // Test Case 4: Zero boundary edge case (n = 0)
+        // Should return an empty list [] safely
+        List<TreeNode> result4 = new Unique_Binary_Search_Trees_ii().generateTrees(0);
+        System.out.println("Test 4 (n = 0) Total Trees: " + result4.size());
+    }
 }
